@@ -3,4 +3,31 @@
     <string name="home_title">Hangman</string>
     <string name="play_Button">Play</string>
     <string name="donate_Button">Donate</string>
+
+    <string name="a_Button">A</string>
+    <string name="b_Button">B</string>
+    <string name="c_Button">C</string>
+    <string name="d_Button">D</string>
+    <string name="e_Button">E</string>
+    <string name="f_Button">F</string>
+    <string name="g_Button">G</string>
+    <string name="h_Button">H</string>
+    <string name="i_Button">I</string>
+    <string name="j_Button">J</string>
+    <string name="k_Button">K</string>
+    <string name="l_Button">L</string>
+    <string name="m_Button">M</string>
+    <string name="n_Button">N</string>
+    <string name="o_Button">O</string>
+    <string name="p_Button">P</string>
+    <string name="q_Button">Q</string>
+    <string name="r_Button">R</string>
+    <string name="s_Button">S</string>
+    <string name="t_Button">T</string>
+    <string name="u_Button">U</string>
+    <string name="v_Button">V</string>
+    <string name="w_Button">W</string>
+    <string name="x_Button">X</string>
+    <string name="y_Button">Y</string>
+    <string name="z_Button">Z</string>
 </resources>

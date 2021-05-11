@@ -12,7 +12,7 @@
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -144,37 +144,37 @@
                 android:id="@+id/buttonP"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
-                android:text="@string/p_Button"/>
+                android:text="@string/p_Button" />
 
             <Button
                 android:id="@+id/buttonQ"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
-                android:text="@string/q_Button"/>
+                android:text="@string/q_Button" />
 
             <Button
                 android:id="@+id/buttonR"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
-                android:text="@string/r_Button"/>
+                android:text="@string/r_Button" />
 
             <Button
                 android:id="@+id/buttonS"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
-                android:text="@string/s_Button"/>
+                android:text="@string/s_Button" />
 
             <Button
                 android:id="@+id/buttonT"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
-                android:text="@string/t_Button"/>
+                android:text="@string/t_Button" />
 
             <Button
                 android:id="@+id/buttonU"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
-                android:text="@string/u_Button"/>
+                android:text="@string/u_Button" />
         </LinearLayout>
 
         <LinearLayout
@@ -189,28 +189,28 @@
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="10dp"
-                android:text="@string/v_Button"/>
+                android:text="@string/v_Button" />
 
             <Button
                 android:id="@+id/buttonW"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="10dp"
-                android:text="@string/w_Button"/>
+                android:text="@string/w_Button" />
 
             <Button
                 android:id="@+id/buttonX"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="10dp"
-                android:text="@string/x_Button"/>
+                android:text="@string/x_Button" />
 
             <Button
                 android:id="@+id/buttonY"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="10dp"
-                android:text="@string/y_Button"/>
+                android:text="@string/y_Button" />
 
             <Button
                 android:id="@+id/buttonZ"
@@ -221,14 +221,17 @@
 
     </LinearLayout>
 
-    <!--<com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
+   <com.google.android.gms.ads.AdView
+       android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />-->
+        app:layout_constraintVertical_bias="1.0"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        ads:adUnitId="Hangman_Play"
+        ads:adSize="BANNER" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

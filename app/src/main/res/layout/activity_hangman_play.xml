@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#808080"
+    android:background="#323436"
     tools:context=".HangmanPlay">
 
 
@@ -33,42 +33,56 @@
                 android:id="@+id/buttonA"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/a_Button" />
 
             <Button
                 android:id="@+id/buttonB"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/b_Button" />
 
             <Button
                 android:id="@+id/buttonC"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/c_Button" />
 
             <Button
                 android:id="@+id/buttonD"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/d_Button" />
 
             <Button
                 android:id="@+id/buttonE"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/e_Button" />
 
             <Button
                 android:id="@+id/buttonF"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/f_Button" />
 
             <Button
                 android:id="@+id/buttonG"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/g_Button" />
 
         </LinearLayout>
@@ -86,42 +100,56 @@
                 android:id="@+id/buttonH"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/h_Button" />
 
             <Button
                 android:id="@+id/buttonI"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/i_Button" />
 
             <Button
                 android:id="@+id/buttonJ"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/j_Button" />
 
             <Button
                 android:id="@+id/buttonK"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/k_Button" />
 
             <Button
                 android:id="@+id/buttonL"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/l_Button" />
 
             <Button
                 android:id="@+id/buttonM"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/m_Button" />
 
             <Button
                 android:id="@+id/buttonN"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/n_Button" />
         </LinearLayout>
 
@@ -138,42 +166,56 @@
                 android:id="@+id/buttonO"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/o_Button" />
 
             <Button
                 android:id="@+id/buttonP"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/p_Button" />
 
             <Button
                 android:id="@+id/buttonQ"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/q_Button" />
 
             <Button
                 android:id="@+id/buttonR"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/r_Button" />
 
             <Button
                 android:id="@+id/buttonS"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/s_Button" />
 
             <Button
                 android:id="@+id/buttonT"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/t_Button" />
 
             <Button
                 android:id="@+id/buttonU"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/u_Button" />
         </LinearLayout>
 
@@ -189,6 +231,8 @@
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="10dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/v_Button" />
 
             <Button
@@ -196,6 +240,8 @@
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="10dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/w_Button" />
 
             <Button
@@ -203,6 +249,8 @@
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="10dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/x_Button" />
 
             <Button
@@ -210,12 +258,16 @@
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="10dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/y_Button" />
 
             <Button
                 android:id="@+id/buttonZ"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:textColor="#6ec5f0"
+                android:background="@android:color/transparent"
                 android:text="@string/z_Button" />
         </LinearLayout>
 

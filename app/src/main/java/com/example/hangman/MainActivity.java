@@ -9,10 +9,21 @@ import android.net.Uri;
 
 public class MainActivity extends AppCompatActivity {
 
+    HangmanDBHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = new HangmanDBHelper(this);
+        try {
+            db.createDataBase();
+            db.openDataBase();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void playButtonClick(View view){
@@ -25,4 +36,5 @@ public class MainActivity extends AppCompatActivity {
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }
+
 }

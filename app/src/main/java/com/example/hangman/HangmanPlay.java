@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class HangmanPlay extends AppCompatActivity implements View.OnClickListener {
     TextView txt;
@@ -94,6 +97,11 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
 
         Button buttonZ = findViewById(R.id.buttonZ);
         buttonZ.setOnClickListener(this);
+
+        HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
+        List<HangmanWordModel> word = db.getUnplayedWord();
+
+        Toast.makeText(HangmanPlay.this, "New Word: " + word.toString(), Toast.LENGTH_SHORT);
     }
 
     //TODO: want to pass a the letter to this function so I do not have to write a function for every letter

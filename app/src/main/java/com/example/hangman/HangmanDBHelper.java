@@ -71,8 +71,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
                 copyDataBase();
             }
             catch (IOException e) {
-                throw new Error(
-                        "Error copying database");
+                throw new Error("Error copying database");
             }
         }
     }
@@ -166,7 +165,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
 
         // query help us to return all data
         // the present in the ALGO_TOPICS table.
-        String query = "SELECT Words FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 0 LIMIT 1;";
+        String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 0 LIMIT 1;";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {

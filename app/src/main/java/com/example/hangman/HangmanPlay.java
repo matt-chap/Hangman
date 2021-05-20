@@ -101,7 +101,7 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
         List<HangmanWordModel> word = db.getUnplayedWord();
 
-        Toast.makeText(HangmanPlay.this, "New Word: " + word.toString(), Toast.LENGTH_SHORT);
+        Toast.makeText(HangmanPlay.this, "New Word: " + word.toString(), Toast.LENGTH_SHORT).show();
     }
 
     //TODO: want to pass a the letter to this function so I do not have to write a function for every letter

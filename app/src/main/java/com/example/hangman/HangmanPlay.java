@@ -18,8 +18,6 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangman_play);
 
-        txt = findViewById(R.id.textView2);
-
         Button buttonA = findViewById(R.id.buttonA);
         buttonA.setOnClickListener(this);
 
@@ -98,10 +96,19 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         Button buttonZ = findViewById(R.id.buttonZ);
         buttonZ.setOnClickListener(this);
 
+        //TODO: simply return single item here so that I can remove get(0)
         HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
         List<HangmanWordModel> word = db.getUnplayedWord();
 
-        Toast.makeText(HangmanPlay.this, "New Word: " + word.toString(), Toast.LENGTH_SHORT).show();
+        HangmanWordModel currentWord = word.get(0);
+
+        //TODO: probably need to fix and make this into its own method for play again ability
+        final TextView txtCategory = (TextView) findViewById(R.id.text_category);
+        ColumnCategory cat = ColumnCategory.getLeg(currentWord.getCategory());
+        txtCategory.setText(cat.name());
+
+        final TextView txtWord = (TextView) findViewById(R.id.text_word);
+        txtWord.setText(currentWord.getWord());
     }
 
     //TODO: want to pass a the letter to this function so I do not have to write a function for every letter

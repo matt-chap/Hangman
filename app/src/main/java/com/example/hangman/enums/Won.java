@@ -1,13 +1,13 @@
-package com.example.hangman;
+package com.example.hangman.enums;
 
-public enum ColumnWon {
+public enum Won {
     USER_NOT_PLAYED(0),
     USER_LOST(1),
     USER_WON(2);
 
     private final int code;
 
-    private ColumnWon(int code) {
+    private Won(int code) {
         this.code = code;
     }
 

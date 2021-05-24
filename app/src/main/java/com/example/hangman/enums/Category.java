@@ -1,9 +1,6 @@
-package com.example.hangman;
+package com.example.hangman.enums;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public enum ColumnCategory {
+public enum Category {
     UNKNOWN(0),
     GEOGRAPHY(1),
     MOVIES(2),
@@ -12,7 +9,7 @@ public enum ColumnCategory {
 
     private final int codeIndex;
 
-    private ColumnCategory(int code) {
+    private Category(int code) {
         this.codeIndex = code;
     }
 
@@ -30,8 +27,8 @@ public enum ColumnCategory {
 
     //private LegNo(int legIndex) { this.legIndex = legIndex; }
 
-    public static ColumnCategory getLeg(int legIndex) {
-        for (ColumnCategory l : ColumnCategory.values()) {
+    public static Category getLeg(int legIndex) {
+        for (Category l : Category.values()) {
             if (l.codeIndex == legIndex) return l;
         }
         throw new IllegalArgumentException("Leg not found. Amputated?");

@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.hangman.enums.Category;
+import com.example.hangman.model.HangmanWordModel;
 
 import java.util.List;
 
 public class HangmanPlay extends AppCompatActivity implements View.OnClickListener {
     TextView txt;
+    String currentWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,19 +99,18 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         Button buttonZ = findViewById(R.id.buttonZ);
         buttonZ.setOnClickListener(this);
 
-        //TODO: simply return single item here so that I can remove get(0)
         HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
-        List<HangmanWordModel> word = db.getUnplayedWord();
+        HangmanWordModel wordData = db.getUnplayedWord();
+        currentWord = wordData.getWord();
 
-        HangmanWordModel currentWord = word.get(0);
 
         //TODO: probably need to fix and make this into its own method for play again ability
         final TextView txtCategory = (TextView) findViewById(R.id.text_category);
-        ColumnCategory cat = ColumnCategory.getLeg(currentWord.getCategory());
+        Category cat = Category.getLeg(wordData.getCategory());
         txtCategory.setText(cat.name());
 
         final TextView txtWord = (TextView) findViewById(R.id.text_word);
-        txtWord.setText(currentWord.getWord());
+        txtWord.setText(currentWord);
     }
 
     //TODO: want to pass a the letter to this function so I do not have to write a function for every letter

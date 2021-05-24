@@ -1,4 +1,4 @@
-package com.example.hangman;
+package com.example.hangman.model;
 
 public class HangmanWordModel {
     private String Word;
@@ -29,7 +29,6 @@ public class HangmanWordModel {
     public String getWord() {
         return Word;
     }
-
     public void setWord(String word) {
         Word = word;
     }
@@ -37,7 +36,6 @@ public class HangmanWordModel {
     public int getCategory() {
         return Category;
     }
-
     public void setCategory(int category) {
         Category = category;
     }
@@ -45,7 +43,6 @@ public class HangmanWordModel {
     public int getWon() {
         return Won;
     }
-
     public void setWon(int won) {
         Won = won;
     }

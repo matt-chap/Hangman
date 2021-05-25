@@ -9,7 +9,7 @@ public enum Category {
 
     private final int codeIndex;
 
-    private Category(int code) {
+    Category(int code) {
         this.codeIndex = code;
     }
 
@@ -27,7 +27,7 @@ public enum Category {
 
     //private LegNo(int legIndex) { this.legIndex = legIndex; }
 
-    public static Category getLeg(int legIndex) {
+    public static Category getCategoryName(int legIndex) {
         for (Category l : Category.values()) {
             if (l.codeIndex == legIndex) return l;
         }

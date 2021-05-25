@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.hangman.enums.Category;
+import com.example.hangman.model.HangmanCountModel;
 import com.example.hangman.model.HangmanWordModel;
 
 import java.util.List;
@@ -103,10 +104,19 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         HangmanWordModel wordData = db.getUnplayedWord();
         currentWord = wordData.getWord();
 
+        HangmanCountModel countData = db.getWordCounts();
+        final TextView txtUnplayedCount = (TextView) findViewById(R.id.CountUnplayed);
+        txtUnplayedCount.setText(Integer.toString(countData.getUnplayed()));
+
+        final TextView txtWonCount = (TextView) findViewById(R.id.CountWon);
+        txtWonCount.setText(Integer.toString(countData.getWon()));
+
+        final TextView txtLossCount = (TextView) findViewById(R.id.CountLoss);
+        txtLossCount.setText(Integer.toString(countData.getLoss()));
 
         //TODO: probably need to fix and make this into its own method for play again ability
         final TextView txtCategory = (TextView) findViewById(R.id.text_category);
-        Category cat = Category.getLeg(wordData.getCategory());
+        Category cat = Category.getCategoryName(wordData.getCategory());
         txtCategory.setText(cat.name());
 
         final TextView txtWord = (TextView) findViewById(R.id.text_word);

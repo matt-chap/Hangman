@@ -37,7 +37,8 @@
                 android:background="@android:color/transparent"
                 android:onClick="clickLetter"
                 android:text="@string/a_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonB"
@@ -45,7 +46,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/b_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonC"
@@ -53,7 +55,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/c_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonD"
@@ -61,7 +64,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/d_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonE"
@@ -69,7 +73,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/e_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonF"
@@ -77,7 +82,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/f_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonG"
@@ -85,7 +91,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/g_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </LinearLayout>
 
@@ -104,7 +111,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/h_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonI"
@@ -112,7 +120,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/i_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonJ"
@@ -120,7 +129,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/j_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonK"
@@ -128,7 +138,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/k_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonL"
@@ -144,7 +155,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/m_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonN"
@@ -152,7 +164,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/n_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -170,7 +183,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/o_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonP"
@@ -178,7 +192,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/p_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonQ"
@@ -186,7 +201,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/q_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonR"
@@ -194,7 +210,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/r_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonS"
@@ -202,7 +219,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/s_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonT"
@@ -210,7 +228,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/t_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonU"
@@ -218,7 +237,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/u_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -235,7 +255,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
                 android:text="@string/v_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonW"
@@ -244,7 +265,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
                 android:text="@string/w_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonX"
@@ -253,7 +275,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
                 android:text="@string/x_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonY"
@@ -262,7 +285,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent"
                 android:text="@string/y_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonZ"
@@ -270,7 +294,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/z_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
 
     </LinearLayout>
@@ -312,5 +337,73 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="#6ec5f0" />
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/LabelUnplayed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unplayed"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/LabelWon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Won"
+                android:textColor="#92FD00" />
+
+            <TextView
+                android:id="@+id/LabelLoss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loss"
+                android:textColor="#FF5E5E" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/CountUnplayed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/CountWon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#92FD00" />
+
+            <TextView
+                android:id="@+id/CountLoss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#FF5E5E" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

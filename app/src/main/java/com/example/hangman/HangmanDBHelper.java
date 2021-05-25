@@ -193,9 +193,9 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {
-            int won = cursor.getInt(0);
+            int unplayed = cursor.getInt(0);
             int loss = cursor.getInt(1);
-            int unplayed = cursor.getInt(2);
+            int won = cursor.getInt(2);
             return new HangmanCountModel(won, loss, unplayed);
         } else{
             // Todo: log?

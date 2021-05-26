@@ -11,7 +11,8 @@ import com.example.hangman.enums.Category;
 import com.example.hangman.model.HangmanCountModel;
 import com.example.hangman.model.HangmanWordModel;
 
-import java.util.List;
+import java.text.NumberFormat;
+
 
 public class HangmanPlay extends AppCompatActivity implements View.OnClickListener {
     TextView txt;
@@ -106,13 +107,13 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
 
         HangmanCountModel countData = db.getWordCounts();
         final TextView txtUnplayedCount = (TextView) findViewById(R.id.CountUnplayed);
-        txtUnplayedCount.setText(Integer.toString(countData.getUnplayed()));
+        txtUnplayedCount.setText(NumberFormat.getIntegerInstance().format(countData.getUnplayed()));
 
         final TextView txtWonCount = (TextView) findViewById(R.id.CountWon);
-        txtWonCount.setText(Integer.toString(countData.getWon()));
+        txtWonCount.setText(NumberFormat.getIntegerInstance().format(countData.getWon()));
 
         final TextView txtLossCount = (TextView) findViewById(R.id.CountLoss);
-        txtLossCount.setText(Integer.toString(countData.getLoss()));
+        txtLossCount.setText(NumberFormat.getIntegerInstance().format(countData.getLoss()));
 
         //TODO: probably need to fix and make this into its own method for play again ability
         final TextView txtCategory = (TextView) findViewById(R.id.text_category);
@@ -235,6 +236,8 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
                 txt.append("Z");
                 break;
             }
+            default:
+                throw new IllegalStateException("Unexpected value: " + v.getId());
         }
     }
 }

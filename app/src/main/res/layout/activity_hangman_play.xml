@@ -147,7 +147,8 @@
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/l_Button"
-                android:textColor="#6ec5f0" />
+                android:textColor="#6ec5f0"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonM"
@@ -405,5 +406,18 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/hangmanPic"
+        android:layout_width="317dp"
+        android:layout_height="217dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/svg_hangman1"
+        app:layout_constraintBottom_toTopOf="@+id/text_category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

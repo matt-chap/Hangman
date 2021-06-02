@@ -160,9 +160,8 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // query help us to return all data
-        // the present in the ALGO_TOPICS table.
-        String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 0 LIMIT 1;";
+        // To return a random word
+        String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 0 ORDER BY RANDOM() LIMIT 1;";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {

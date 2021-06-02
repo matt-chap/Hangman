@@ -35,7 +35,6 @@
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
-                android:onClick="clickLetter"
                 android:text="@string/a_Button"
                 android:textColor="#6ec5f0"
                 style="?android:attr/buttonBarButtonStyle" />
@@ -315,6 +314,19 @@
         ads:adSize="BANNER" />
 
     <TextView
+        android:id="@+id/text_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/text_word"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="#6ec5f0"
+        />
+
+    <TextView
         android:id="@+id/text_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -325,19 +337,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="#6ec5f0"
+        android:letterSpacing=".5"
         />
-
-    <TextView
-        android:id="@+id/text_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/text_word"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textColor="#6ec5f0" />
 
     <LinearLayout
         android:layout_width="150dp"

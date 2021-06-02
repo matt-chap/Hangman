@@ -16,6 +16,7 @@ import java.text.NumberFormat;
 
 public class HangmanPlay extends AppCompatActivity implements View.OnClickListener {
     TextView txt;
+    TextView txtWord;
     String currentWord;
 
     @Override
@@ -101,11 +102,55 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         Button buttonZ = findViewById(R.id.buttonZ);
         buttonZ.setOnClickListener(this);
 
+        //final TextView
+        txtWord = (TextView) findViewById(R.id.text_word);
+        //txtWord.setText(currentWord);
+        PlayGame();
+    }
+
+    public void PlayGame(){
+        ResetVars();
+        SetNewWordData();
+        SetUnderscores();
+    }
+
+    public void ResetVars(){
+        currentWord = "";
+    }
+
+    public void SetUnderscores(){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < currentWord.length(); i++)
+        {
+            char c = currentWord.charAt(i);
+            if(Character.isLetter(c)){
+                sb.append("_");
+            }
+            else{
+                sb.append(c);
+            }
+        }
+        txtWord.setText(sb.toString());
+    }
+
+    public void SetNewWordData(){
         HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
         HangmanWordModel wordData = db.getUnplayedWord();
         currentWord = wordData.getWord();
 
+        SetWordCategory(wordData.getCategory());
+        SetWordStats(db);
+    }
+
+    public void SetWordCategory(int categoryInt){
+        final TextView txtCategory = (TextView) findViewById(R.id.text_category);
+        Category cat = Category.getCategoryName(categoryInt);
+        txtCategory.setText(cat.name());
+    }
+
+    public void SetWordStats(HangmanDBHelper db){
         HangmanCountModel countData = db.getWordCounts();
+
         final TextView txtUnplayedCount = (TextView) findViewById(R.id.CountUnplayed);
         txtUnplayedCount.setText(NumberFormat.getIntegerInstance().format(countData.getUnplayed()));
 
@@ -114,19 +159,6 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
 
         final TextView txtLossCount = (TextView) findViewById(R.id.CountLoss);
         txtLossCount.setText(NumberFormat.getIntegerInstance().format(countData.getLoss()));
-
-        //TODO: probably need to fix and make this into its own method for play again ability
-        final TextView txtCategory = (TextView) findViewById(R.id.text_category);
-        Category cat = Category.getCategoryName(wordData.getCategory());
-        txtCategory.setText(cat.name());
-
-        final TextView txtWord = (TextView) findViewById(R.id.text_word);
-        txtWord.setText(currentWord);
-    }
-
-    //TODO: want to pass a the letter to this function so I do not have to write a function for every letter
-    public void clickLetter(View view) {
-
     }
 
     @Override

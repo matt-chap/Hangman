@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.graphics.Color;
 
 import com.example.hangman.enums.Category;
 import com.example.hangman.model.HangmanCountModel;
@@ -161,111 +162,164 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         txtLossCount.setText(NumberFormat.getIntegerInstance().format(countData.getLoss()));
     }
 
+    public void CheckLetterInWord(Character letter){
+        StringBuilder sb = new StringBuilder();
+        String underscoreWord = txtWord.getText().toString();
+        for(int i = 0; i < currentWord.length(); i++)
+        {
+            char uc = underscoreWord.charAt(i);
+            char cc = currentWord.charAt(i);
+            if(uc == '_' && Character.isLetter(cc)){
+                if(cc == letter){
+                    sb.append(letter);
+                }
+                else{
+                    sb.append("_");
+                }
+            }
+            else{
+                sb.append(cc);
+            }
+        }
+        txtWord.setText(sb.toString());
+    }
+
+    public void setButtonState(View v){
+        v.setEnabled(false);
+        ((Button)v).setTextColor(Color.parseColor("#d3d3d3"));
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonA: {
-                txt.append("A");
+                setButtonState(v);
+                CheckLetterInWord('A');
                 break;
             }
             case R.id.buttonB: {
-                txt.append("B");
+                setButtonState(v);
+                CheckLetterInWord('B');
                 break;
             }
             case R.id.buttonC: {
-                txt.append("C");
+                setButtonState(v);
+                CheckLetterInWord('C');
                 break;
             }
             case R.id.buttonD: {
-                txt.append("D");
+                setButtonState(v);
+                CheckLetterInWord('D');
                 break;
             }
             case R.id.buttonE: {
-                txt.append("E");
+                setButtonState(v);
+                CheckLetterInWord('E');
                 break;
             }
             case R.id.buttonF: {
-                txt.append("F");
+                setButtonState(v);
+                CheckLetterInWord('F');
                 break;
             }
             case R.id.buttonG: {
-                txt.append("G");
+                setButtonState(v);
+                CheckLetterInWord('G');
                 break;
             }
             case R.id.buttonH: {
-                txt.append("H");
+                setButtonState(v);
+                CheckLetterInWord('H');
                 break;
             }
             case R.id.buttonI: {
-                txt.append("I");
+                setButtonState(v);
+                CheckLetterInWord('I');
                 break;
             }
             case R.id.buttonJ: {
-                txt.append("J");
+                setButtonState(v);
+                CheckLetterInWord('J');
                 break;
             }
             case R.id.buttonK: {
-                txt.append("K");
+                setButtonState(v);
+                CheckLetterInWord('K');
                 break;
             }
             case R.id.buttonL: {
-                txt.append("L");
+                setButtonState(v);
+                CheckLetterInWord('L');
                 break;
             }
             case R.id.buttonM: {
-                txt.append("M");
+                setButtonState(v);
+                CheckLetterInWord('M');
                 break;
             }
             case R.id.buttonN: {
-                txt.append("N");
+                setButtonState(v);
+                CheckLetterInWord('N');
                 break;
             }
             case R.id.buttonO: {
-                txt.append("O");
+                setButtonState(v);
+                CheckLetterInWord('O');
                 break;
             }
             case R.id.buttonP: {
-                txt.append("P");
+                setButtonState(v);
+                CheckLetterInWord('P');
                 break;
             }
             case R.id.buttonQ: {
-                txt.append("Q");
+                setButtonState(v);
+                CheckLetterInWord('Q');
                 break;
             }
             case R.id.buttonR: {
-                txt.append("R");
+                setButtonState(v);
+                CheckLetterInWord('R');
                 break;
             }
             case R.id.buttonS: {
-                txt.append("S");
+                setButtonState(v);
+                CheckLetterInWord('S');
                 break;
             }
             case R.id.buttonT: {
-                txt.append("T");
+                setButtonState(v);
+                CheckLetterInWord('T');
                 break;
             }
             case R.id.buttonU: {
-                txt.append("U");
+                setButtonState(v);
+                CheckLetterInWord('U');
                 break;
             }
             case R.id.buttonV: {
-                txt.append("V");
+                setButtonState(v);
+                CheckLetterInWord('V');
                 break;
             }
             case R.id.buttonW: {
-                txt.append("W");
+                setButtonState(v);
+                CheckLetterInWord('W');
                 break;
             }
             case R.id.buttonX: {
-                txt.append("X");
+                setButtonState(v);
+                CheckLetterInWord('X');
                 break;
             }
             case R.id.buttonY: {
-                txt.append("Y");
+                setButtonState(v);
+                CheckLetterInWord('Y');
                 break;
             }
             case R.id.buttonZ: {
-                txt.append("Z");
+                setButtonState(v);
+                CheckLetterInWord('Z');
                 break;
             }
             default:

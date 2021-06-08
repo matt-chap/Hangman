@@ -1,10 +1,13 @@
 package com.example.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.Color;
 
@@ -19,6 +22,7 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
     TextView txt;
     TextView txtWord;
     String currentWord;
+    Integer wrongLetterCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,26 +115,33 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
 
     public void PlayGame(){
         ResetVars();
+        ResetButtonState();
         SetNewWordData();
         SetUnderscores();
     }
 
     public void ResetVars(){
+        wrongLetterCount = 0;
         currentWord = "";
+        ImageView pic = (ImageView)findViewById(R.id.hangmanPic);
+        pic.setBackground(ContextCompat.getDrawable(this, R.drawable.svg_hangman1));
     }
 
     public void SetUnderscores(){
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < currentWord.length(); i++)
-        {
-            char c = currentWord.charAt(i);
-            if(Character.isLetter(c)){
-                sb.append("_");
+
+            for(int i = 0; i < currentWord.length(); i++)
+            {
+                char c = currentWord.charAt(i);
+                if(Character.isLetter(c)){
+                    sb.append("_");
+                }
+                else{
+                    sb.append(c);
+                }
             }
-            else{
-                sb.append(c);
-            }
-        }
+
+
         txtWord.setText(sb.toString());
     }
 
@@ -165,160 +176,233 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
     public void CheckLetterInWord(Character letter){
         StringBuilder sb = new StringBuilder();
         String underscoreWord = txtWord.getText().toString();
-        for(int i = 0; i < currentWord.length(); i++)
-        {
-            char uc = underscoreWord.charAt(i);
-            char cc = currentWord.charAt(i);
-            if(uc == '_' && Character.isLetter(cc)){
-                if(cc == letter){
-                    sb.append(letter);
-                }
-                else{
-                    sb.append("_");
+        Boolean isInWord = false;
+
+        if (currentWord.indexOf(letter) != -1) {
+            // Word contains letter
+            for (int i = 0; i < currentWord.length(); i++) {
+                char uc = underscoreWord.charAt(i);
+                char cc = currentWord.charAt(i);
+                if (uc == '_' && Character.isLetter(cc)) {
+                    if (cc == letter) {
+                        sb.append(letter);
+                    } else {
+                        sb.append("_");
+                    }
+                } else {
+                    sb.append(cc);
                 }
             }
-            else{
-                sb.append(cc);
-            }
+            txtWord.setText(sb.toString());
         }
-        txtWord.setText(sb.toString());
+        else{
+            // Word does NOT contain letter
+            wrongLetterCount += 1;
+            ImageView pic = (ImageView)findViewById(R.id.hangmanPic);
+            pic.setBackground(ContextCompat.getDrawable(this, GetDrawable()));
+        }
     }
 
-    public void setButtonState(View v){
-        v.setEnabled(false);
-        ((Button)v).setTextColor(Color.parseColor("#d3d3d3"));
+    public Integer GetDrawable(){
+        int picId;
+        switch (wrongLetterCount){
+            case 0:{
+                picId = R.drawable.svg_hangman1;
+                break;
+            }
+            case 1:{
+                picId = R.drawable.svg_hangman2;
+                break;
+            }
+            case 2:{
+                picId = R.drawable.svg_hangman3;
+                break;
+            }
+            case 3:{
+                picId = R.drawable.svg_hangman4;
+                break;
+            }
+            case 4:{
+                picId = R.drawable.svg_hangman5;
+                break;
+            }
+            default:{
+                picId = R.drawable.svg_hangman6;
+                break;
+            }
+        }
+        return picId;
+    }
+
+    public void setButtonState(View v, Boolean isReset){
+        if(isReset){
+            v.setEnabled(true);
+            ((Button)v).setTextColor(Color.parseColor("#6ec5f0"));
+        }else {
+            v.setEnabled(false);
+            ((Button) v).setTextColor(Color.parseColor("#808080"));
+        }
+    }
+
+    public void ResetButtonState(){
+        setButtonState(findViewById(R.id.buttonA), true);
+        setButtonState(findViewById(R.id.buttonB), true);
+        setButtonState(findViewById(R.id.buttonC), true);
+        setButtonState(findViewById(R.id.buttonD), true);
+        setButtonState(findViewById(R.id.buttonE), true);
+        setButtonState(findViewById(R.id.buttonF), true);
+        setButtonState(findViewById(R.id.buttonG), true);
+        setButtonState(findViewById(R.id.buttonH), true);
+        setButtonState(findViewById(R.id.buttonI), true);
+        setButtonState(findViewById(R.id.buttonJ), true);
+        setButtonState(findViewById(R.id.buttonK), true);
+        setButtonState(findViewById(R.id.buttonL), true);
+        setButtonState(findViewById(R.id.buttonM), true);
+        setButtonState(findViewById(R.id.buttonN), true);
+        setButtonState(findViewById(R.id.buttonO), true);
+        setButtonState(findViewById(R.id.buttonP), true);
+        setButtonState(findViewById(R.id.buttonQ), true);
+        setButtonState(findViewById(R.id.buttonR), true);
+        setButtonState(findViewById(R.id.buttonS), true);
+        setButtonState(findViewById(R.id.buttonT), true);
+        setButtonState(findViewById(R.id.buttonU), true);
+        setButtonState(findViewById(R.id.buttonV), true);
+        setButtonState(findViewById(R.id.buttonW), true);
+        setButtonState(findViewById(R.id.buttonX), true);
+        setButtonState(findViewById(R.id.buttonY), true);
+        setButtonState(findViewById(R.id.buttonZ), true);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonA: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('A');
                 break;
             }
             case R.id.buttonB: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('B');
                 break;
             }
             case R.id.buttonC: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('C');
                 break;
             }
             case R.id.buttonD: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('D');
                 break;
             }
             case R.id.buttonE: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('E');
                 break;
             }
             case R.id.buttonF: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('F');
                 break;
             }
             case R.id.buttonG: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('G');
                 break;
             }
             case R.id.buttonH: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('H');
                 break;
             }
             case R.id.buttonI: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('I');
                 break;
             }
             case R.id.buttonJ: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('J');
                 break;
             }
             case R.id.buttonK: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('K');
                 break;
             }
             case R.id.buttonL: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('L');
                 break;
             }
             case R.id.buttonM: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('M');
                 break;
             }
             case R.id.buttonN: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('N');
                 break;
             }
             case R.id.buttonO: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('O');
                 break;
             }
             case R.id.buttonP: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('P');
                 break;
             }
             case R.id.buttonQ: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('Q');
                 break;
             }
             case R.id.buttonR: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('R');
                 break;
             }
             case R.id.buttonS: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('S');
                 break;
             }
             case R.id.buttonT: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('T');
                 break;
             }
             case R.id.buttonU: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('U');
                 break;
             }
             case R.id.buttonV: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('V');
                 break;
             }
             case R.id.buttonW: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('W');
                 break;
             }
             case R.id.buttonX: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('X');
                 break;
             }
             case R.id.buttonY: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('Y');
                 break;
             }
             case R.id.buttonZ: {
-                setButtonState(v);
+                setButtonState(v, false);
                 CheckLetterInWord('Z');
                 break;
             }

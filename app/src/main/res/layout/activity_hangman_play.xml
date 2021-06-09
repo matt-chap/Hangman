@@ -342,63 +342,64 @@
         android:gravity="center_horizontal" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textAlignment="center"
-        android:gravity="center_horizontal" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/LabelUnplayed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Unplayed"
             android:layout_marginLeft="10dp"
+            android:text="Unplayed"
             android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/CountUnplayed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
             android:layout_marginLeft="10dp"
+            android:text="0"
             android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/LabelWon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Won"
             android:layout_marginLeft="20dp"
+            android:text="Won"
             android:textColor="#92FD00" />
 
         <TextView
             android:id="@+id/CountWon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
             android:layout_marginLeft="10dp"
+            android:text="0"
             android:textColor="#92FD00" />
 
         <TextView
             android:id="@+id/LabelLoss"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loss"
             android:layout_marginLeft="20dp"
+            android:text="Loss"
             android:textColor="#FF5E5E" />
 
         <TextView
             android:id="@+id/CountLoss"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
             android:layout_marginLeft="10dp"
+            android:text="0"
             android:textColor="#FF5E5E" />
 
     </LinearLayout>
@@ -415,5 +416,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/playAgainView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#3C1990CF"
+        android:visibility="gone"
+        app:cardBackgroundColor="#95000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/playAgainText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="#6ec5f0"
+                android:textSize="34sp"
+                android:layout_centerInParent="true"/>
+
+            <Button
+                android:id="@+id/playAgainButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:onClick="PlayAgainClick"
+                android:text="Button" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

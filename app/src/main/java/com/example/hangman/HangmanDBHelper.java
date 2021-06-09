@@ -1,5 +1,6 @@
 package com.example.hangman;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -202,5 +203,31 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
 
         // TODO: Perhaps need to throw an error
         return new HangmanCountModel(0, 0,0);
+    }
+
+    public void setWordLoss(String word)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // query help us to return all data
+        // the present in the ALGO_TOPICS table.
+        ContentValues cv = new ContentValues();
+        cv.put("Won", 1);
+
+        String[] args = new String[]{word};
+        db.update(HangmanEntry.TABLE_NAME, cv, "Word=?", args);
+    }
+
+    public void setWordWon(String word)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // query help us to return all data
+        // the present in the ALGO_TOPICS table.
+        ContentValues cv = new ContentValues();
+        cv.put("Won", 2);
+
+        String[] args = new String[]{word};
+        db.update(HangmanEntry.TABLE_NAME, cv, "Word=?", args);
     }
 }

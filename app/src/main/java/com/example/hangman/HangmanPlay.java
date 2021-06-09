@@ -1,6 +1,7 @@
 package com.example.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
@@ -120,11 +121,19 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         SetUnderscores();
     }
 
+
+    public void PlayAgainClick(View view){
+        PlayGame();
+    }
+
     public void ResetVars(){
         wrongLetterCount = 0;
         currentWord = "";
         ImageView pic = (ImageView)findViewById(R.id.hangmanPic);
         pic.setBackground(ContextCompat.getDrawable(this, R.drawable.svg_hangman1));
+        CardView card = (CardView)findViewById(R.id.playAgainView);
+        card.setVisibility(View.GONE);
+
     }
 
     public void SetUnderscores(){
@@ -176,7 +185,6 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
     public void CheckLetterInWord(Character letter){
         StringBuilder sb = new StringBuilder();
         String underscoreWord = txtWord.getText().toString();
-        Boolean isInWord = false;
 
         if (currentWord.indexOf(letter) != -1) {
             // Word contains letter
@@ -193,14 +201,40 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
                     sb.append(cc);
                 }
             }
-            txtWord.setText(sb.toString());
+            String newTxt = sb.toString();
+            txtWord.setText(newTxt);
+            if(newTxt.indexOf('_') == -1){
+                GameOver(true);
+            }
         }
         else{
             // Word does NOT contain letter
             wrongLetterCount += 1;
             ImageView pic = (ImageView)findViewById(R.id.hangmanPic);
             pic.setBackground(ContextCompat.getDrawable(this, GetDrawable()));
+            if(wrongLetterCount >= 5){
+                GameOver(false);
+            }
         }
+    }
+
+    public void GameOver(Boolean won){
+        HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
+        String gameOverTxt = "";
+        if(won){
+            db.setWordWon(currentWord);
+            gameOverTxt = "You WON! Play again?";
+
+        }else{
+            db.setWordLoss(currentWord);
+            gameOverTxt = "You lost, play again?";
+        }
+
+        TextView playAgainTxt = (TextView)findViewById(R.id.playAgainText);
+        playAgainTxt.setText(gameOverTxt);
+
+        CardView card = (CardView)findViewById(R.id.playAgainView);
+        card.setVisibility(View.VISIBLE);
     }
 
     public Integer GetDrawable(){

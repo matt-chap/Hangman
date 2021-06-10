@@ -8,7 +8,6 @@ import android.view.View;
 import android.net.Uri;
 
 public class MainActivity extends AppCompatActivity {
-
     HangmanDBHelper db;
 
     @Override
@@ -20,18 +19,17 @@ public class MainActivity extends AppCompatActivity {
         try {
             db.createDataBase();
             db.openDataBase();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void playButtonClick(View view){
+    public void playButtonClick(View view) {
         Intent intent = new Intent(this, HangmanPlay.class);
         startActivity(intent);
     }
 
-    public void donateButtonClick(View view){
+    public void donateButtonClick(View view) {
         Uri uriUrl = Uri.parse("https://matt-chap.com/donate/");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);

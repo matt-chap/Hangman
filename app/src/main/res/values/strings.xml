@@ -30,4 +30,10 @@
     <string name="x_Button">X</string>
     <string name="y_Button">Y</string>
     <string name="z_Button">Z</string>
+    <string name="unplayed">Unplayed</string>
+    <string name="_0">0</string>
+    <string name="won">Won</string>
+    <string name="loss">Loss</string>
+    <string name="hangman_picture_description">Hangman Picture Description</string>
+    <string name="play_again">PLAY AGAIN?</string>
 </resources>

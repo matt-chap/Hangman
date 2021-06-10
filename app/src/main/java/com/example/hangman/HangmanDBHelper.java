@@ -19,7 +19,6 @@ import java.io.OutputStream;
 import java.sql.SQLException;
 
 public class HangmanDBHelper extends SQLiteOpenHelper {
-
     // The Android's default system path
     // of your application database.
     private static String DB_PATH = "";
@@ -51,14 +50,12 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
     // Creates an empty database
     // on the system and rewrites it
     // with your own database.
-    public void createDataBase() throws IOException
-    {
+    public void createDataBase() throws IOException {
         boolean dbExist = checkDataBase();
 
         if (dbExist) {
             // do nothing - database already exist
-        }
-        else {
+        } else {
             // By calling this method and
             // the empty database will be
             // created into the default system
@@ -69,8 +66,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             this.getWritableDatabase();
             try {
                 copyDataBase();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 throw new Error("Error copying database");
             }
         }
@@ -81,8 +77,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
     // time you open the application
     // return true if it exists
     // false if it doesn't.
-    private boolean checkDataBase()
-    {
+    private boolean checkDataBase() {
         SQLiteDatabase checkDB = null;
         try {
             String myPath = DB_PATH;
@@ -91,8 +86,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
                     .openDatabase(
                             myPath, null,
                             SQLiteDatabase.OPEN_READONLY);
-        }
-        catch (SQLiteException e) {
+        } catch (SQLiteException e) {
 
             // database doesn't exist yet.
             Log.e("message", "" + e);
@@ -110,9 +104,8 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
      * system folder, from where it
      * can be accessed and handled.
      * This is done by transferring bytestream.
-     * */
-    private void copyDataBase() throws IOException
-    {
+     */
+    private void copyDataBase() throws IOException {
         // Open your local db as the input stream
         InputStream myInput = myContext.getAssets().open(DATABASE_NAME);
 
@@ -137,18 +130,16 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
         myInput.close();
     }
 
-    public void openDataBase() throws SQLException
-    {
+    public void openDataBase() throws SQLException {
         // Open the database
         String myPath = DB_PATH;
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
     }
 
     @Override
-    public synchronized void close()
-    {
+    public synchronized void close() {
         // close the database.
-        if (myDataBase != null){
+        if (myDataBase != null) {
             myDataBase.close();
         }
 
@@ -157,8 +148,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
 
     // This method is used to get a new
     // the word and the corresponding category from the database.
-    public HangmanWordModel getUnplayedWord()
-    {
+    public HangmanWordModel getUnplayedWord() {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // To return a random word
@@ -171,16 +161,16 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             int won = cursor.getInt(2);
 
             return new HangmanWordModel(word, category, won);
-        } else{
+        } else {
             // Todo: log?
         }
+
 
         // TODO: Perhaps need to throw error or try again
         return new HangmanWordModel("Word", 0, 0);
     }
 
-    public HangmanCountModel getWordCounts()
-    {
+    public HangmanCountModel getWordCounts() {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // query help us to return all data
@@ -197,16 +187,16 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             int loss = cursor.getInt(1);
             int won = cursor.getInt(2);
             return new HangmanCountModel(won, loss, unplayed);
-        } else{
+        } else {
             // Todo: log?
         }
 
+        cursor.close();
         // TODO: Perhaps need to throw an error
-        return new HangmanCountModel(0, 0,0);
+        return new HangmanCountModel(0, 0, 0);
     }
 
-    public void setWordLoss(String word)
-    {
+    public void setWordLoss(String word) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // query help us to return all data
@@ -218,8 +208,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
         db.update(HangmanEntry.TABLE_NAME, cv, "Word=?", args);
     }
 
-    public void setWordWon(String word)
-    {
+    public void setWordWon(String word) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // query help us to return all data

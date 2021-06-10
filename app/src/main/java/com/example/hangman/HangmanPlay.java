@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,7 +21,6 @@ import java.text.NumberFormat;
 
 
 public class HangmanPlay extends AppCompatActivity implements View.OnClickListener {
-    TextView txt;
     TextView txtWord;
     String currentWord;
     Integer wrongLetterCount;
@@ -108,53 +108,46 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         Button buttonZ = findViewById(R.id.buttonZ);
         buttonZ.setOnClickListener(this);
 
-        //final TextView
         txtWord = (TextView) findViewById(R.id.text_word);
-        //txtWord.setText(currentWord);
         PlayGame();
     }
 
-    public void PlayGame(){
+    public void PlayGame() {
         ResetVars();
         ResetButtonState();
         SetNewWordData();
         SetUnderscores();
     }
 
-
-    public void PlayAgainClick(View view){
+    public void PlayAgainClick(View view) {
         PlayGame();
     }
 
-    public void ResetVars(){
+    public void ResetVars() {
         wrongLetterCount = 0;
         currentWord = "";
-        ImageView pic = (ImageView)findViewById(R.id.hangmanPic);
-        pic.setBackground(ContextCompat.getDrawable(this, R.drawable.svg_hangman1));
-        CardView card = (CardView)findViewById(R.id.playAgainView);
+        ImageView pic = (ImageView) findViewById(R.id.hangmanPic);
+        pic.setBackground(ContextCompat.getDrawable(this, R.drawable.svg_hangman0));
+        CardView card = (CardView) findViewById(R.id.playAgainView);
         card.setVisibility(View.GONE);
-
     }
 
-    public void SetUnderscores(){
+    public void SetUnderscores() {
         StringBuilder sb = new StringBuilder();
 
-            for(int i = 0; i < currentWord.length(); i++)
-            {
-                char c = currentWord.charAt(i);
-                if(Character.isLetter(c)){
-                    sb.append("_");
-                }
-                else{
-                    sb.append(c);
-                }
+        for (int i = 0; i < currentWord.length(); i++) {
+            char c = currentWord.charAt(i);
+            if (Character.isLetter(c)) {
+                sb.append("_");
+            } else {
+                sb.append(c);
             }
-
+        }
 
         txtWord.setText(sb.toString());
     }
 
-    public void SetNewWordData(){
+    public void SetNewWordData() {
         HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
         HangmanWordModel wordData = db.getUnplayedWord();
         currentWord = wordData.getWord();
@@ -163,13 +156,13 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         SetWordStats(db);
     }
 
-    public void SetWordCategory(int categoryInt){
+    public void SetWordCategory(int categoryInt) {
         final TextView txtCategory = (TextView) findViewById(R.id.text_category);
         Category cat = Category.getCategoryName(categoryInt);
         txtCategory.setText(cat.name());
     }
 
-    public void SetWordStats(HangmanDBHelper db){
+    public void SetWordStats(HangmanDBHelper db) {
         HangmanCountModel countData = db.getWordCounts();
 
         final TextView txtUnplayedCount = (TextView) findViewById(R.id.CountUnplayed);
@@ -182,7 +175,7 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         txtLossCount.setText(NumberFormat.getIntegerInstance().format(countData.getLoss()));
     }
 
-    public void CheckLetterInWord(Character letter){
+    public void CheckLetterInWord(Character letter) {
         StringBuilder sb = new StringBuilder();
         String underscoreWord = txtWord.getText().toString();
 
@@ -203,64 +196,68 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
             }
             String newTxt = sb.toString();
             txtWord.setText(newTxt);
-            if(newTxt.indexOf('_') == -1){
+            if (newTxt.indexOf('_') == -1) {
                 GameOver(true);
             }
-        }
-        else{
+        } else {
             // Word does NOT contain letter
             wrongLetterCount += 1;
-            ImageView pic = (ImageView)findViewById(R.id.hangmanPic);
+            ImageView pic = (ImageView) findViewById(R.id.hangmanPic);
             pic.setBackground(ContextCompat.getDrawable(this, GetDrawable()));
-            if(wrongLetterCount >= 5){
+            if (wrongLetterCount >= 6) {
                 GameOver(false);
             }
         }
     }
 
-    public void GameOver(Boolean won){
+    public void GameOver(Boolean won) {
         HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
         String gameOverTxt = "";
-        if(won){
+        if (won) {
             db.setWordWon(currentWord);
-            gameOverTxt = "You WON! Play again?";
+            gameOverTxt = "You WON!";
 
-        }else{
+        } else {
             db.setWordLoss(currentWord);
-            gameOverTxt = "You lost, play again?";
+            gameOverTxt = "You lost." + System.getProperty("line.separator");
+            gameOverTxt += "The word was " + currentWord;
         }
 
-        TextView playAgainTxt = (TextView)findViewById(R.id.playAgainText);
+        TextView playAgainTxt = (TextView) findViewById(R.id.playAgainText);
         playAgainTxt.setText(gameOverTxt);
 
-        CardView card = (CardView)findViewById(R.id.playAgainView);
+        CardView card = (CardView) findViewById(R.id.playAgainView);
         card.setVisibility(View.VISIBLE);
     }
 
-    public Integer GetDrawable(){
+    public Integer GetDrawable() {
         int picId;
-        switch (wrongLetterCount){
-            case 0:{
+        switch (wrongLetterCount) {
+            case 0: {
+                picId = R.drawable.svg_hangman0;
+                break;
+            }
+            case 1: {
                 picId = R.drawable.svg_hangman1;
                 break;
             }
-            case 1:{
+            case 2: {
                 picId = R.drawable.svg_hangman2;
                 break;
             }
-            case 2:{
+            case 3: {
                 picId = R.drawable.svg_hangman3;
                 break;
             }
-            case 3:{
+            case 4: {
                 picId = R.drawable.svg_hangman4;
                 break;
             }
-            case 4:{
+            case 5: {
                 picId = R.drawable.svg_hangman5;
                 break;
             }
-            default:{
+            default: {
                 picId = R.drawable.svg_hangman6;
                 break;
             }
@@ -268,17 +265,17 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         return picId;
     }
 
-    public void setButtonState(View v, Boolean isReset){
-        if(isReset){
+    public void setButtonState(View v, Boolean isReset) {
+        if (isReset) {
             v.setEnabled(true);
-            ((Button)v).setTextColor(Color.parseColor("#6ec5f0"));
-        }else {
+            ((Button) v).setTextColor(Color.parseColor("#6ec5f0"));
+        } else {
             v.setEnabled(false);
             ((Button) v).setTextColor(Color.parseColor("#808080"));
         }
     }
 
-    public void ResetButtonState(){
+    public void ResetButtonState() {
         setButtonState(findViewById(R.id.buttonA), true);
         setButtonState(findViewById(R.id.buttonB), true);
         setButtonState(findViewById(R.id.buttonC), true);

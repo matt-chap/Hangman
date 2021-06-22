@@ -16,6 +16,11 @@ import android.graphics.Color;
 import com.example.hangman.enums.Category;
 import com.example.hangman.model.HangmanCountModel;
 import com.example.hangman.model.HangmanWordModel;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.text.NumberFormat;
 
@@ -24,11 +29,22 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
     TextView txtWord;
     String currentWord;
     Integer wrongLetterCount;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangman_play);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         Button buttonA = findViewById(R.id.buttonA);
         buttonA.setOnClickListener(this);

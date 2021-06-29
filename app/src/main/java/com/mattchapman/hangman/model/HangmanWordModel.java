@@ -1,4 +1,4 @@
-package com.example.hangman.model;
+package com.mattchapman.hangman.model;
 
 public class HangmanWordModel {
     private String Word;

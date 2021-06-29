@@ -1,4 +1,4 @@
-package com.example.hangman;
+package com.mattchapman.hangman;
 
 import org.junit.Test;
 

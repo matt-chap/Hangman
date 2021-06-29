@@ -1,4 +1,4 @@
-package com.example.hangman;
+package com.mattchapman.hangman;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.hangman.HangmanContract.*;
-import com.example.hangman.model.HangmanCountModel;
-import com.example.hangman.model.HangmanWordModel;
+import com.mattchapman.hangman.HangmanContract.*;
+import com.mattchapman.hangman.model.HangmanCountModel;
+import com.mattchapman.hangman.model.HangmanWordModel;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

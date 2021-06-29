@@ -1,4 +1,4 @@
-package com.example.hangman.enums;
+package com.mattchapman.hangman.enums;
 
 public enum Won {
     USER_NOT_PLAYED(0),

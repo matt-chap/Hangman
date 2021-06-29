@@ -1,21 +1,19 @@
-package com.example.hangman;
+package com.mattchapman.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.Color;
 
-import com.example.hangman.enums.Category;
-import com.example.hangman.model.HangmanCountModel;
-import com.example.hangman.model.HangmanWordModel;
+import com.mattchapman.hangman.enums.Category;
+import com.mattchapman.hangman.model.HangmanCountModel;
+import com.mattchapman.hangman.model.HangmanWordModel;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;

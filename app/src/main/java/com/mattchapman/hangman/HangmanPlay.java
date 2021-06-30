@@ -230,11 +230,11 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         if (won) {
             db.setWordWon(currentWord);
             gameOverTxt = "You WON!";
-
         } else {
             db.setWordLoss(currentWord);
-            gameOverTxt = "You lost." + System.getProperty("line.separator");
-            gameOverTxt += "The word was " + currentWord;
+            gameOverTxt = "You LOST." + System.getProperty("line.separator");
+            gameOverTxt += "The word was" + System.getProperty("line.separator");
+            gameOverTxt += currentWord;
         }
 
         TextView playAgainTxt = (TextView) findViewById(R.id.playAgainText);

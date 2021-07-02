@@ -9,12 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Hangman">
-        <activity android:name=".HangmanPlay"></activity>
-        <!-- DO NOT COMMIT -->
+        <activity android:name=".HangmanPlay" android:screenOrientation="portrait"></activity>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7055124141244227~3305995396"/>
-        <activity android:name=".MainActivity">
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

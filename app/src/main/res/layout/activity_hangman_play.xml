@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="#323436"
     tools:context=".HangmanPlay"
-    android:screenOrientation="portrait">
+    >
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="233dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/adView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:layout_gravity="center">
 
@@ -30,7 +30,7 @@
                 android:id="@+id/buttonA"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="50dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/a_Button"
                 android:textColor="#6ec5f0"
@@ -40,7 +40,7 @@
                 android:id="@+id/buttonB"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="50dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/b_Button"
                 android:textColor="#6ec5f0"
@@ -50,7 +50,7 @@
                 android:id="@+id/buttonC"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="50dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/c_Button"
                 android:textColor="#6ec5f0"
@@ -60,7 +60,7 @@
                 android:id="@+id/buttonD"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="50dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/d_Button"
                 android:textColor="#6ec5f0"
@@ -70,7 +70,7 @@
                 android:id="@+id/buttonE"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="50dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/e_Button"
                 android:textColor="#6ec5f0"
@@ -80,7 +80,7 @@
                 android:id="@+id/buttonF"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="50dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/f_Button"
                 android:textColor="#6ec5f0"
@@ -89,8 +89,8 @@
             <Button
                 android:id="@+id/buttonG"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/g_Button"
                 android:textColor="#6ec5f0"
@@ -99,7 +99,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:layout_gravity="center">
 
@@ -107,7 +107,7 @@
                 android:id="@+id/buttonH"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="50dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/h_Button"
                 android:textColor="#6ec5f0"
@@ -176,7 +176,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:layout_gravity="center">
 
@@ -260,7 +260,7 @@
             <Button
                 android:id="@+id/buttonV"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="40dp"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
@@ -272,7 +272,7 @@
             <Button
                 android:id="@+id/buttonW"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="40dp"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
@@ -284,7 +284,7 @@
             <Button
                 android:id="@+id/buttonX"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="40dp"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
@@ -296,7 +296,7 @@
             <Button
                 android:id="@+id/buttonY"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="40dp"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
@@ -308,7 +308,7 @@
             <Button
                 android:id="@+id/buttonZ"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="40dp"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="@string/z_Button"

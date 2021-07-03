@@ -149,49 +149,56 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
     // This method is used to get a new
     // the word and the corresponding category from the database.
     public HangmanWordModel getUnplayedWord() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
 
-        // To return a random word
-        String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 0 ORDER BY RANDOM() LIMIT 1;";
-        Cursor cursor = db.rawQuery(query, null);
+            // To return a random word
+            String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 0 AND Word ORDER BY RANDOM() LIMIT 1;";
+            Cursor cursor = db.rawQuery(query, null);
 
-        if (cursor.moveToFirst()) {
-            int category = cursor.getInt(0);
-            String word = cursor.getString(1);
-            int won = cursor.getInt(2);
+            if (cursor.moveToFirst()) {
+                int category = cursor.getInt(0);
+                String word = cursor.getString(1);
+                int won = cursor.getInt(2);
 
-            return new HangmanWordModel(word, category, won);
-        } else {
-            // Todo: log?
+                return new HangmanWordModel(word, category, won);
+            }
+        } catch (Exception ex){
+            // TODO: Error Controls? Mailto?
+            return new HangmanWordModel("987-654-321", 0, 0);
         }
 
-
         // TODO: Perhaps need to throw error or try again
-        return new HangmanWordModel("Word", 0, 0);
+        return new HangmanWordModel("123-456-789", 0, 0);
     }
 
     public HangmanCountModel getWordCounts() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
 
-        // query help us to return all data
-        // the present in the ALGO_TOPICS table.
-        String query = "SELECT " +
-                "SUM(CASE WHEN Won = 0 THEN 1 ELSE 0 END) as Unplayed," +
-                "SUM(CASE WHEN Won = 1 THEN 1 ELSE 0 END) as Loss," +
-                "SUM(CASE WHEN Won = 2 THEN 1 ELSE 0 END) as Won" +
-                " FROM " + HangmanEntry.TABLE_NAME + ";";
-        Cursor cursor = db.rawQuery(query, null);
+            // query help us to return all data
+            // the present in the ALGO_TOPICS table.
+            String query = "SELECT " +
+                    "SUM(CASE WHEN Won = 0 THEN 1 ELSE 0 END) as Unplayed," +
+                    "SUM(CASE WHEN Won = 1 THEN 1 ELSE 0 END) as Loss," +
+                    "SUM(CASE WHEN Won = 2 THEN 1 ELSE 0 END) as Won" +
+                    " FROM " + HangmanEntry.TABLE_NAME + ";";
+            Cursor cursor = db.rawQuery(query, null);
 
-        if (cursor.moveToFirst()) {
-            int unplayed = cursor.getInt(0);
-            int loss = cursor.getInt(1);
-            int won = cursor.getInt(2);
-            return new HangmanCountModel(won, loss, unplayed);
-        } else {
-            // Todo: log?
+            if (cursor.moveToFirst()) {
+                int unplayed = cursor.getInt(0);
+                int loss = cursor.getInt(1);
+                int won = cursor.getInt(2);
+                return new HangmanCountModel(won, loss, unplayed);
+            } else {
+                // Todo: log?
+            }
+
+            cursor.close();
+        } catch (Exception ex){
+            return new HangmanCountModel(0, 0, 0);
         }
 
-        cursor.close();
         // TODO: Perhaps need to throw an error
         return new HangmanCountModel(0, 0, 0);
     }

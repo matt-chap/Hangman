@@ -137,6 +137,10 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         PlayGame();
     }
 
+    public void PlayLossesClick(View view) {
+        PlayGame();
+    }
+
     public void ResetVars() {
         wrongLetterCount = 0;
         currentWord = "";

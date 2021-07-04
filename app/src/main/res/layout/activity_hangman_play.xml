@@ -9,6 +9,117 @@
     >
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/LabelUnplayed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/unplayed"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/CountUnplayed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/_0"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/LabelWon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/won"
+            android:textColor="#92FD00" />
+
+        <TextView
+            android:id="@+id/CountWon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/_0"
+            android:textColor="#92FD00" />
+
+        <TextView
+            android:id="@+id/LabelLoss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/loss"
+            android:textColor="#FF5E5E" />
+
+        <TextView
+            android:id="@+id/CountLoss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/_0"
+            android:textColor="#FF5E5E" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/hangmanPic"
+        android:layout_width="317dp"
+        android:layout_height="217dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/svg_hangman1"
+        app:layout_constraintBottom_toTopOf="@+id/text_category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:contentDescription="@string/hangman_picture_description" />
+
+    <TextView
+        android:id="@+id/text_category"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-medium"
+        android:text=""
+        android:textColor="#6ec5f0"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/text_word"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_word"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="monospace"
+        android:gravity="center_horizontal"
+        android:letterSpacing=".15"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="#6ec5f0"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -253,7 +364,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:layout_gravity="center">
 
@@ -329,123 +440,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/text_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="sans-serif-medium"
-        android:text=""
-        android:textColor="#6ec5f0"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/text_word"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/text_word"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:fontFamily="monospace"
-        android:gravity="center_horizontal"
-        android:letterSpacing=".25"
-        android:text=""
-        android:textAlignment="center"
-        android:textColor="#6ec5f0"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/LabelUnplayed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:text="@string/unplayed"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/CountUnplayed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:text="@string/_0"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/LabelWon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/won"
-            android:textColor="#92FD00" />
-
-        <TextView
-            android:id="@+id/CountWon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:text="@string/_0"
-            android:textColor="#92FD00" />
-
-        <TextView
-            android:id="@+id/LabelLoss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/loss"
-            android:textColor="#FF5E5E" />
-
-        <TextView
-            android:id="@+id/CountLoss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:text="@string/_0"
-            android:textColor="#FF5E5E" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/hangmanPic"
-        android:layout_width="317dp"
-        android:layout_height="217dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/svg_hangman1"
-        app:layout_constraintBottom_toTopOf="@+id/text_category"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:contentDescription="@string/hangman_picture_description" />
-
+    <!-- Popup screen -->
     <androidx.cardview.widget.CardView
         android:id="@+id/playAgainView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#3C1990CF"
-        android:visibility="gone"
+        android:visibility=""
         app:cardBackgroundColor="#DF000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -459,6 +460,33 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/playOver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/playLossGames"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                android:gravity="center"
+                android:text="You have played all the words."
+                android:textColor="#6ec5f0"
+                android:textSize="34sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/playLossGames"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/playAgainText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                android:gravity="center"
+                android:text="Would you like to play the words you lost?"
+                android:textColor="#6ec5f0"
+                android:textSize="34sp"
+                android:visibility="gone"
+                />
+
+            <TextView
                 android:id="@+id/playAgainText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -466,7 +494,8 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="#6ec5f0"
-                android:textSize="34sp" />
+                android:textSize="34sp"
+                />
 
             <Button
                 android:id="@+id/playAgainButton"
@@ -481,6 +510,22 @@
                 android:paddingRight="10dp"
                 android:text="@string/play_again"
                 android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/playLossButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/playAgainButton"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/blue_button"
+                android:onClick="PlayLossesClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/play_losses"
+                android:textColor="#000000"
+                android:visibility="gone"
+                />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

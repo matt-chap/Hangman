@@ -81,7 +81,7 @@
         android:layout_width="317dp"
         android:layout_height="217dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/svg_hangman1"
+        android:background="@drawable/svg_hangman0"
         app:layout_constraintBottom_toTopOf="@+id/text_category"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
@@ -97,6 +97,7 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-medium"
         android:text=""
+        android:gravity="center_horizontal"
         android:textColor="#6ec5f0"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/text_word"
@@ -446,7 +447,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#3C1990CF"
-        android:visibility=""
+        android:visibility="gone"
         app:cardBackgroundColor="#DF000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -469,8 +470,8 @@
                 android:gravity="center"
                 android:text="You have played all the words."
                 android:textColor="#6ec5f0"
-                android:textSize="34sp"
-                android:visibility="gone" />
+                android:textSize="24sp"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/playLossGames"
@@ -482,8 +483,8 @@
                 android:gravity="center"
                 android:text="Would you like to play the words you lost?"
                 android:textColor="#6ec5f0"
-                android:textSize="34sp"
-                android:visibility="gone"
+                android:textSize="24sp"
+                android:visibility="visible"
                 />
 
             <TextView
@@ -494,7 +495,7 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="#6ec5f0"
-                android:textSize="34sp"
+                android:textSize="24sp"
                 />
 
             <Button
@@ -508,24 +509,8 @@
                 android:onClick="PlayAgainClick"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/play_again"
                 android:textColor="#000000" />
 
-            <Button
-                android:id="@+id/playLossButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_below="@+id/playAgainButton"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/blue_button"
-                android:onClick="PlayLossesClick"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/play_losses"
-                android:textColor="#000000"
-                android:visibility="gone"
-                />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

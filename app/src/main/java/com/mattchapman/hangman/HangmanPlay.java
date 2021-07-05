@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.graphics.Color;
 
 import com.mattchapman.hangman.enums.Category;
+import com.mattchapman.hangman.enums.GameType;
 import com.mattchapman.hangman.model.HangmanCountModel;
 import com.mattchapman.hangman.model.HangmanWordModel;
 import com.google.android.gms.ads.AdView;
@@ -123,31 +124,110 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         buttonZ.setOnClickListener(this);
 
         txtWord = (TextView) findViewById(R.id.text_word);
-        PlayGame();
+        PlayGame(GameType.NEW_GAME);
     }
 
-    public void PlayGame() {
+    public void PlayGame(GameType gameType) {
+        // Prevent user from going further until we decide what point they are
+        CardView card = findViewById(R.id.playAgainView);
+        card.setVisibility(View.VISIBLE);
+
+        // Only init the DB helper one time
+        HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
+        HangmanCountModel countData;
+
+        String gameOverTxt = "";
+        if (gameType == GameType.NEW_GAME){
+            countData = db.getWordCounts();
+        }
+        else if (gameType == GameType.WON_GAME) {
+            db.setWordWon(currentWord);
+            gameOverTxt = "You WON!";
+
+            countData = db.getWordCounts();
+        }
+        else if (gameType == GameType.LOST_GAME) {
+            db.setWordLoss(currentWord);
+            gameOverTxt = "You LOST." + System.getProperty("line.separator");
+            gameOverTxt += "The word was" + System.getProperty("line.separator");
+            gameOverTxt += currentWord;
+
+            countData = db.getWordCounts();
+        }
+        else {
+            //Should never hit here
+            gameOverTxt = "Unknown play type, please close the app and try again.";
+            countData = new HangmanCountModel(0,0,0);
+        }
+
+        // Win, Lost and Unknown will have text
+        TextView playAgainTxt = findViewById(R.id.playAgainText);
+        playAgainTxt.setText(gameOverTxt);
+
+        Button playAgain = findViewById(R.id.playAgainButton);
+        TextView playOver = findViewById(R.id.playOver);
+        TextView playLossGames = findViewById(R.id.playLossGames);
+
+
+        // Reset Game
         ResetVars();
         ResetButtonState();
-        SetNewWordData();
+        SetWordStats(countData);
+
+
+
+        // Display Game Over text or Just start a new game
+        if (countData.getUnplayed() != 0){
+            // Can play unplayed so should get that next value
+            HangmanWordModel wordData = db.getUnplayedWord();
+            currentWord = wordData.getWord();
+            SetWordCategory(wordData.getCategory());
+
+            if (gameType == GameType.NEW_GAME){
+                card.setVisibility(View.GONE);
+            }
+            else{
+                playOver.setVisibility(View.GONE);
+                playLossGames.setVisibility(View.GONE);
+
+                playAgainTxt.setVisibility(View.VISIBLE);
+                playAgain.setVisibility(View.VISIBLE);
+                playAgain.setText("Play Again?");
+            }
+        } else if(countData.getLoss() != 0){
+            // Can replay lost games so let the user do that
+            playOver.setVisibility(View.VISIBLE);
+            playLossGames.setVisibility(View.VISIBLE);
+
+            playAgainTxt.setVisibility(View.VISIBLE);
+            playAgain.setVisibility(View.VISIBLE);
+            playAgain.setText("Play Lost Words?");
+
+            HangmanWordModel wordData = db.getLostWord();
+            currentWord = wordData.getWord();
+            SetWordCategory(wordData.getCategory());
+        } else {
+            // The game is over since unplayed and lost games have been exhausted
+            playOver.setVisibility(View.VISIBLE);
+            playLossGames.setVisibility(View.GONE);
+
+            playAgainTxt.setVisibility(View.GONE);
+            playAgain.setVisibility(View.GONE);
+        }
+
         SetUnderscores();
     }
 
     public void PlayAgainClick(View view) {
-        PlayGame();
-    }
-
-    public void PlayLossesClick(View view) {
-        PlayGame();
+        // Data should already be loaded so all that has to happen is the screen will disappear
+        CardView card = findViewById(R.id.playAgainView);
+        card.setVisibility(View.GONE);
     }
 
     public void ResetVars() {
         wrongLetterCount = 0;
-        currentWord = "";
-        ImageView pic = (ImageView) findViewById(R.id.hangmanPic);
+        ImageView pic = findViewById(R.id.hangmanPic);
         pic.setBackground(ContextCompat.getDrawable(this, R.drawable.svg_hangman0));
-        CardView card = (CardView) findViewById(R.id.playAgainView);
-        card.setVisibility(View.GONE);
     }
 
     public void SetUnderscores() {
@@ -165,24 +245,13 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         txtWord.setText(sb.toString());
     }
 
-    public void SetNewWordData() {
-        HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
-        HangmanWordModel wordData = db.getUnplayedWord();
-        currentWord = wordData.getWord();
-
-        SetWordCategory(wordData.getCategory());
-        SetWordStats(db);
-    }
-
     public void SetWordCategory(int categoryInt) {
         final TextView txtCategory = (TextView) findViewById(R.id.text_category);
         Category cat = Category.getCategoryName(categoryInt);
         txtCategory.setText(cat.name());
     }
 
-    public void SetWordStats(HangmanDBHelper db) {
-        HangmanCountModel countData = db.getWordCounts();
-
+    public void SetWordStats(HangmanCountModel countData) {
         final TextView txtUnplayedCount = (TextView) findViewById(R.id.CountUnplayed);
         txtUnplayedCount.setText(NumberFormat.getIntegerInstance().format(countData.getUnplayed()));
 
@@ -215,7 +284,7 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
             String newTxt = sb.toString();
             txtWord.setText(newTxt);
             if (newTxt.indexOf('_') == -1) {
-                GameOver(true);
+                PlayGame(GameType.WON_GAME);
             }
         } else {
             // Word does NOT contain letter
@@ -223,29 +292,9 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
             ImageView pic = (ImageView) findViewById(R.id.hangmanPic);
             pic.setBackground(ContextCompat.getDrawable(this, GetDrawable()));
             if (wrongLetterCount >= 6) {
-                GameOver(false);
+                PlayGame(GameType.LOST_GAME);
             }
         }
-    }
-
-    public void GameOver(Boolean won) {
-        HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
-        String gameOverTxt = "";
-        if (won) {
-            db.setWordWon(currentWord);
-            gameOverTxt = "You WON!";
-        } else {
-            db.setWordLoss(currentWord);
-            gameOverTxt = "You LOST." + System.getProperty("line.separator");
-            gameOverTxt += "The word was" + System.getProperty("line.separator");
-            gameOverTxt += currentWord;
-        }
-
-        TextView playAgainTxt = (TextView) findViewById(R.id.playAgainText);
-        playAgainTxt.setText(gameOverTxt);
-
-        CardView card = (CardView) findViewById(R.id.playAgainView);
-        card.setVisibility(View.VISIBLE);
     }
 
     public Integer GetDrawable() {

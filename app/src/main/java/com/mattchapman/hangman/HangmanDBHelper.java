@@ -153,7 +153,31 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getReadableDatabase();
 
             // To return a random word
-            String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 0 AND Word ORDER BY RANDOM() LIMIT 1;";
+            String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 0 ORDER BY RANDOM() LIMIT 1;";
+            Cursor cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()) {
+                int category = cursor.getInt(0);
+                String word = cursor.getString(1);
+                int won = cursor.getInt(2);
+
+                return new HangmanWordModel(word, category, won);
+            }
+        } catch (Exception ex){
+            // TODO: Error Controls? Mailto?
+            return new HangmanWordModel("987-654-321", 0, 0);
+        }
+
+        // TODO: Perhaps need to throw error or try again
+        return new HangmanWordModel("123-456-789", 0, 0);
+    }
+
+    public HangmanWordModel getLostWord() {
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            // To return a random word
+            String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 2 ORDER BY RANDOM() LIMIT 1;";
             Cursor cursor = db.rawQuery(query, null);
 
             if (cursor.moveToFirst()) {

@@ -177,7 +177,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getReadableDatabase();
 
             // To return a random word
-            String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 2 ORDER BY RANDOM() LIMIT 1;";
+            String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 1 ORDER BY RANDOM() LIMIT 1;";
             Cursor cursor = db.rawQuery(query, null);
 
             if (cursor.moveToFirst()) {

@@ -231,18 +231,22 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
     }
 
     public void SetUnderscores() {
-        StringBuilder sb = new StringBuilder();
+        if (currentWord != null) {
+            StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < currentWord.length(); i++) {
-            char c = currentWord.charAt(i);
-            if (Character.isLetter(c)) {
-                sb.append("_");
-            } else {
-                sb.append(c);
+            for (int i = 0; i < currentWord.length(); i++) {
+                char c = currentWord.charAt(i);
+                if (Character.isLetter(c)) {
+                    sb.append("_");
+                } else {
+                    sb.append(c);
+                }
             }
-        }
 
-        txtWord.setText(sb.toString());
+            txtWord.setText(sb.toString());
+        } else {
+            txtWord.setText("You Win");
+        }
     }
 
     public void SetWordCategory(int categoryInt) {

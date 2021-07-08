@@ -256,13 +256,13 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
     }
 
     public void SetWordStats(HangmanCountModel countData) {
-        final TextView txtUnplayedCount = (TextView) findViewById(R.id.CountUnplayed);
+        final TextView txtUnplayedCount = findViewById(R.id.CountUnplayed);
         txtUnplayedCount.setText(NumberFormat.getIntegerInstance().format(countData.getUnplayed()));
 
-        final TextView txtWonCount = (TextView) findViewById(R.id.CountWon);
+        final TextView txtWonCount = findViewById(R.id.CountWon);
         txtWonCount.setText(NumberFormat.getIntegerInstance().format(countData.getWon()));
 
-        final TextView txtLossCount = (TextView) findViewById(R.id.CountLoss);
+        final TextView txtLossCount = findViewById(R.id.CountLoss);
         txtLossCount.setText(NumberFormat.getIntegerInstance().format(countData.getLoss()));
     }
 
@@ -270,7 +270,7 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         StringBuilder sb = new StringBuilder();
         String underscoreWord = txtWord.getText().toString();
 
-        if (currentWord.indexOf(letter) != -1) {
+        if (currentWord != null && currentWord.indexOf(letter) != -1) {
             // Word contains letter
             for (int i = 0; i < currentWord.length(); i++) {
                 char uc = underscoreWord.charAt(i);
@@ -293,7 +293,7 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         } else {
             // Word does NOT contain letter
             wrongLetterCount += 1;
-            ImageView pic = (ImageView) findViewById(R.id.hangmanPic);
+            ImageView pic = findViewById(R.id.hangmanPic);
             pic.setBackground(ContextCompat.getDrawable(this, GetDrawable()));
             if (wrongLetterCount >= 6) {
                 PlayGame(GameType.LOST_GAME);

@@ -230,24 +230,32 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
     public void setWordLoss(String word) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        // query help us to return all data
-        // the present in the ALGO_TOPICS table.
-        ContentValues cv = new ContentValues();
-        cv.put("Won", 1);
+        try{
+            // query help us to return all data
+            // the present in the ALGO_TOPICS table.
+            ContentValues cv = new ContentValues();
+            cv.put("Won", 1);
 
-        String[] args = new String[]{word};
-        db.update(HangmanEntry.TABLE_NAME, cv, "Word=?", args);
+            String[] args = new String[]{word};
+            db.update(HangmanEntry.TABLE_NAME, cv, "Word=?", args);
+        } catch (Exception ex){
+            // TODO: log this error, IDK why/how google got this error to trigger
+        }
     }
 
     public void setWordWon(String word) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        // query help us to return all data
-        // the present in the ALGO_TOPICS table.
-        ContentValues cv = new ContentValues();
-        cv.put("Won", 2);
+        try {
+            // query help us to return all data
+            // the present in the ALGO_TOPICS table.
+            ContentValues cv = new ContentValues();
+            cv.put("Won", 2);
 
-        String[] args = new String[]{word};
-        db.update(HangmanEntry.TABLE_NAME, cv, "Word=?", args);
+            String[] args = new String[]{word};
+            db.update(HangmanEntry.TABLE_NAME, cv, "Word=?", args);
+        } catch (Exception ex){
+            // TODO: log this error, IDK why/how google got this error to trigger
+        }
     }
 }

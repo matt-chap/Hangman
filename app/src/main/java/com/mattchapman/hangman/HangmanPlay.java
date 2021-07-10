@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,6 +45,9 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        if(isTestDevice()) {
+            mAdView.setVisibility(View.GONE);
+        }
 
         Button buttonA = findViewById(R.id.buttonA);
         buttonA.setOnClickListener(this);
@@ -511,5 +515,9 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
             default:
                 throw new IllegalStateException("Unexpected value: " + v.getId());
         }
+    }
+
+    private boolean isTestDevice() {
+        return Boolean.valueOf(Settings.System.getString(getContentResolver(), "firebase.test.lab"));
     }
 }

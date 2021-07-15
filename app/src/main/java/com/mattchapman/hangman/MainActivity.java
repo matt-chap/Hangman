@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void donateButtonClick(View view) {
-        Uri uriUrl = Uri.parse("https://matt-chap.com/donate/");
+    public void aboutMeButtonClick(View view) {
+        Uri uriUrl = Uri.parse("https://matt-chap.com/");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }

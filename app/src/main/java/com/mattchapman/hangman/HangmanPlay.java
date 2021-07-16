@@ -49,8 +49,8 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
             mAdView.setVisibility(View.GONE);
         }
 
-        Button buttonA = findViewById(R.id.buttonA);
-        buttonA.setOnClickListener(this);
+        //Button buttonA = findViewById(R.id.buttonA);
+        //buttonA.setOnClickListener(this);
 
         Button buttonB = findViewById(R.id.buttonB);
         buttonB.setOnClickListener(this);
@@ -382,11 +382,11 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonA: {
+            /*case R.id.buttonA: {
                 setButtonState(v, false);
                 CheckLetterInWord('A');
                 break;
-            }
+            }*/
             case R.id.buttonB: {
                 setButtonState(v, false);
                 CheckLetterInWord('B');
@@ -515,6 +515,11 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
             default:
                 throw new IllegalStateException("Unexpected value: " + v.getId());
         }
+    }
+
+    public void clickLetterA(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('A');
     }
 
     private boolean isTestDevice() {

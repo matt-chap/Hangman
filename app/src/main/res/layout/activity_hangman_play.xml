@@ -143,6 +143,7 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:onClick="clickLetterA"
                 android:background="@android:color/transparent"
                 android:text="@string/a_Button"
                 android:textColor="#6ec5f0"

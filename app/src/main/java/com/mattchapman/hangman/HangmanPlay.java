@@ -3,8 +3,11 @@ package com.mattchapman.hangman;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 
 import android.os.Bundle;
+import android.os.Debug;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +17,7 @@ import android.graphics.Color;
 
 import com.mattchapman.hangman.enums.Category;
 import com.mattchapman.hangman.enums.GameType;
+import com.mattchapman.hangman.interfaces.PlayEventHandler;
 import com.mattchapman.hangman.model.HangmanCountModel;
 import com.mattchapman.hangman.model.HangmanWordModel;
 import com.google.android.gms.ads.AdView;
@@ -25,7 +29,7 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import java.text.NumberFormat;
 
 
-public class HangmanPlay extends AppCompatActivity implements View.OnClickListener {
+public class HangmanPlay extends AppCompatActivity {
     TextView txtWord;
     String currentWord;
     Integer wrongLetterCount;
@@ -45,90 +49,141 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-        if(isTestDevice()) {
+        if (isTestDevice()) {
             mAdView.setVisibility(View.GONE);
         }
 
-        //Button buttonA = findViewById(R.id.buttonA);
-        //buttonA.setOnClickListener(this);
-
-        Button buttonB = findViewById(R.id.buttonB);
-        buttonB.setOnClickListener(this);
-
-        Button buttonC = findViewById(R.id.buttonC);
-        buttonC.setOnClickListener(this);
-
-        Button buttonD = findViewById(R.id.buttonD);
-        buttonD.setOnClickListener(this);
-
-        Button buttonE = findViewById(R.id.buttonE);
-        buttonE.setOnClickListener(this);
-
-        Button buttonF = findViewById(R.id.buttonF);
-        buttonF.setOnClickListener(this);
-
-        Button buttonG = findViewById(R.id.buttonG);
-        buttonG.setOnClickListener(this);
-
-        Button buttonH = findViewById(R.id.buttonH);
-        buttonH.setOnClickListener(this);
-
-        Button buttonI = findViewById(R.id.buttonI);
-        buttonI.setOnClickListener(this);
-
-        Button buttonJ = findViewById(R.id.buttonJ);
-        buttonJ.setOnClickListener(this);
-
-        Button buttonK = findViewById(R.id.buttonK);
-        buttonK.setOnClickListener(this);
-
-        Button buttonL = findViewById(R.id.buttonL);
-        buttonL.setOnClickListener(this);
-
-        Button buttonM = findViewById(R.id.buttonM);
-        buttonM.setOnClickListener(this);
-
-        Button buttonN = findViewById(R.id.buttonN);
-        buttonN.setOnClickListener(this);
-
-        Button buttonO = findViewById(R.id.buttonO);
-        buttonO.setOnClickListener(this);
-
-        Button buttonP = findViewById(R.id.buttonP);
-        buttonP.setOnClickListener(this);
-
-        Button buttonQ = findViewById(R.id.buttonQ);
-        buttonQ.setOnClickListener(this);
-
-        Button buttonR = findViewById(R.id.buttonR);
-        buttonR.setOnClickListener(this);
-
-        Button buttonS = findViewById(R.id.buttonS);
-        buttonS.setOnClickListener(this);
-
-        Button buttonT = findViewById(R.id.buttonT);
-        buttonT.setOnClickListener(this);
-
-        Button buttonU = findViewById(R.id.buttonU);
-        buttonU.setOnClickListener(this);
-
-        Button buttonV = findViewById(R.id.buttonV);
-        buttonV.setOnClickListener(this);
-
-        Button buttonW = findViewById(R.id.buttonW);
-        buttonW.setOnClickListener(this);
-
-        Button buttonX = findViewById(R.id.buttonX);
-        buttonX.setOnClickListener(this);
-
-        Button buttonY = findViewById(R.id.buttonY);
-        buttonY.setOnClickListener(this);
-
-        Button buttonZ = findViewById(R.id.buttonZ);
-        buttonZ.setOnClickListener(this);
-
         txtWord = (TextView) findViewById(R.id.text_word);
         PlayGame(GameType.NEW_GAME);
+    }
+
+    public void clickLetterA(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('A');
+    }
+
+    public void clickLetterB(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('B');
+    }
+
+    public void clickLetterC(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('C');
+    }
+
+    public void clickLetterD(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('D');
+    }
+
+    public void clickLetterE(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('E');
+    }
+
+    public void clickLetterF(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('F');
+    }
+
+    public void clickLetterG(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('G');
+    }
+
+    public void clickLetterH(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('H');
+    }
+
+    public void clickLetterI(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('I');
+    }
+
+    public void clickLetterJ(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('J');
+    }
+
+    public void clickLetterK(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('K');
+    }
+
+    public void clickLetterL(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('L');
+    }
+
+    public void clickLetterM(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('M');
+    }
+
+    public void clickLetterN(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('N');
+    }
+
+    public void clickLetterO(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('O');
+    }
+    public void clickLetterP(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('P');
+    }
+
+    public void clickLetterQ(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('Q');
+    }
+
+    public void clickLetterR(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('R');
+    }
+
+    public void clickLetterS(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('S');
+    }
+
+    public void clickLetterT(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('T');
+    }
+
+    public void clickLetterU(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('U');
+    }
+
+    public void clickLetterV(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('V');
+    }
+
+    public void clickLetterW(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('W');
+    }
+
+    public void clickLetterX(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('X');
+    }
+
+    public void clickLetterY(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('Y');
+    }
+
+    public void clickLetterZ(View v) {
+        setButtonState(v, false);
+        CheckLetterInWord('Z');
     }
 
     public void PlayGame(GameType gameType) {
@@ -141,27 +196,24 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         HangmanCountModel countData;
 
         String gameOverTxt = "";
-        if (gameType == GameType.NEW_GAME){
+        if (gameType == GameType.NEW_GAME) {
             countData = db.getWordCounts();
-        }
-        else if (gameType == GameType.WON_GAME) {
+        } else if (gameType == GameType.WON_GAME) {
             db.setWordWon(currentWord);
             gameOverTxt = "You WON!";
 
             countData = db.getWordCounts();
-        }
-        else if (gameType == GameType.LOST_GAME) {
+        } else if (gameType == GameType.LOST_GAME) {
             db.setWordLoss(currentWord);
             gameOverTxt = "You LOST." + System.getProperty("line.separator");
             gameOverTxt += "The word was" + System.getProperty("line.separator");
             gameOverTxt += currentWord;
 
             countData = db.getWordCounts();
-        }
-        else {
+        } else {
             //Should never hit here
             gameOverTxt = "Unknown play type, please close the app and try again.";
-            countData = new HangmanCountModel(0,0,0);
+            countData = new HangmanCountModel(0, 0, 0);
         }
 
         // Win, Lost and Unknown will have text
@@ -179,18 +231,16 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         SetWordStats(countData);
 
 
-
         // Display Game Over text or Just start a new game
-        if (countData.getUnplayed() != 0){
+        if (countData.getUnplayed() != 0) {
             // Can play unplayed so should get that next value
             HangmanWordModel wordData = db.getUnplayedWord();
             currentWord = wordData.getWord();
             SetWordCategory(wordData.getCategory());
 
-            if (gameType == GameType.NEW_GAME){
+            if (gameType == GameType.NEW_GAME) {
                 card.setVisibility(View.GONE);
-            }
-            else{
+            } else {
                 playOver.setVisibility(View.GONE);
                 playLossGames.setVisibility(View.GONE);
 
@@ -198,7 +248,7 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
                 playAgain.setVisibility(View.VISIBLE);
                 playAgain.setText("Play Again?");
             }
-        } else if(countData.getLoss() != 0){
+        } else if (countData.getLoss() != 0) {
             // Can replay lost games so let the user do that
             playOver.setVisibility(View.VISIBLE);
             playLossGames.setVisibility(View.VISIBLE);
@@ -377,149 +427,6 @@ public class HangmanPlay extends AppCompatActivity implements View.OnClickListen
         setButtonState(findViewById(R.id.buttonX), true);
         setButtonState(findViewById(R.id.buttonY), true);
         setButtonState(findViewById(R.id.buttonZ), true);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            /*case R.id.buttonA: {
-                setButtonState(v, false);
-                CheckLetterInWord('A');
-                break;
-            }*/
-            case R.id.buttonB: {
-                setButtonState(v, false);
-                CheckLetterInWord('B');
-                break;
-            }
-            case R.id.buttonC: {
-                setButtonState(v, false);
-                CheckLetterInWord('C');
-                break;
-            }
-            case R.id.buttonD: {
-                setButtonState(v, false);
-                CheckLetterInWord('D');
-                break;
-            }
-            case R.id.buttonE: {
-                setButtonState(v, false);
-                CheckLetterInWord('E');
-                break;
-            }
-            case R.id.buttonF: {
-                setButtonState(v, false);
-                CheckLetterInWord('F');
-                break;
-            }
-            case R.id.buttonG: {
-                setButtonState(v, false);
-                CheckLetterInWord('G');
-                break;
-            }
-            case R.id.buttonH: {
-                setButtonState(v, false);
-                CheckLetterInWord('H');
-                break;
-            }
-            case R.id.buttonI: {
-                setButtonState(v, false);
-                CheckLetterInWord('I');
-                break;
-            }
-            case R.id.buttonJ: {
-                setButtonState(v, false);
-                CheckLetterInWord('J');
-                break;
-            }
-            case R.id.buttonK: {
-                setButtonState(v, false);
-                CheckLetterInWord('K');
-                break;
-            }
-            case R.id.buttonL: {
-                setButtonState(v, false);
-                CheckLetterInWord('L');
-                break;
-            }
-            case R.id.buttonM: {
-                setButtonState(v, false);
-                CheckLetterInWord('M');
-                break;
-            }
-            case R.id.buttonN: {
-                setButtonState(v, false);
-                CheckLetterInWord('N');
-                break;
-            }
-            case R.id.buttonO: {
-                setButtonState(v, false);
-                CheckLetterInWord('O');
-                break;
-            }
-            case R.id.buttonP: {
-                setButtonState(v, false);
-                CheckLetterInWord('P');
-                break;
-            }
-            case R.id.buttonQ: {
-                setButtonState(v, false);
-                CheckLetterInWord('Q');
-                break;
-            }
-            case R.id.buttonR: {
-                setButtonState(v, false);
-                CheckLetterInWord('R');
-                break;
-            }
-            case R.id.buttonS: {
-                setButtonState(v, false);
-                CheckLetterInWord('S');
-                break;
-            }
-            case R.id.buttonT: {
-                setButtonState(v, false);
-                CheckLetterInWord('T');
-                break;
-            }
-            case R.id.buttonU: {
-                setButtonState(v, false);
-                CheckLetterInWord('U');
-                break;
-            }
-            case R.id.buttonV: {
-                setButtonState(v, false);
-                CheckLetterInWord('V');
-                break;
-            }
-            case R.id.buttonW: {
-                setButtonState(v, false);
-                CheckLetterInWord('W');
-                break;
-            }
-            case R.id.buttonX: {
-                setButtonState(v, false);
-                CheckLetterInWord('X');
-                break;
-            }
-            case R.id.buttonY: {
-                setButtonState(v, false);
-                CheckLetterInWord('Y');
-                break;
-            }
-            case R.id.buttonZ: {
-                setButtonState(v, false);
-                CheckLetterInWord('Z');
-                break;
-            }
-            default:
-                throw new IllegalStateException("Unexpected value: " + v.getId());
-        }
-    }
-
-    public void clickLetterA(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('A');
     }
 
     private boolean isTestDevice() {

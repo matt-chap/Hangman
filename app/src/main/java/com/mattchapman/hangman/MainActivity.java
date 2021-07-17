@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
     // Initialize a BillingClient
     private PurchasesUpdatedListener purchasesUpdatedListener = new PurchasesUpdatedListener() {
         @Override
@@ -45,18 +46,18 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    /*
+
     private BillingClient billingClient = BillingClient.newBuilder(activity)
             .setListener(purchasesUpdatedListener)
             .enablePendingPurchases()
             .build();
-
+*/
 
     public void playButtonClick(View view) {
         Intent intent = new Intent(this, HangmanPlay.class);
         startActivity(intent);
     }
-*/
+
     public void aboutMeButtonClick(View view) {
         Uri uriUrl = Uri.parse("https://matt-chap.com/");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);

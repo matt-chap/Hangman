@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 
 import android.os.Bundle;
-import android.os.Debug;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
@@ -15,9 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.Color;
 
+import com.mattchapman.hangman.databinding.ActivityHangmanPlayBinding;
 import com.mattchapman.hangman.enums.Category;
 import com.mattchapman.hangman.enums.GameType;
-import com.mattchapman.hangman.interfaces.PlayEventHandler;
 import com.mattchapman.hangman.model.HangmanCountModel;
 import com.mattchapman.hangman.model.HangmanWordModel;
 import com.google.android.gms.ads.AdView;
@@ -40,6 +38,9 @@ public class HangmanPlay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangman_play);
 
+        ActivityHangmanPlayBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_hangman_play);
+        binding.setHandlers(this);
+
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -57,133 +58,10 @@ public class HangmanPlay extends AppCompatActivity {
         PlayGame(GameType.NEW_GAME);
     }
 
-    public void clickLetterA(View v) {
+    // This is the actual letter click function
+    public void clickLetter(View v, Character letter) {
         setButtonState(v, false);
-        CheckLetterInWord('A');
-    }
-
-    public void clickLetterB(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('B');
-    }
-
-    public void clickLetterC(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('C');
-    }
-
-    public void clickLetterD(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('D');
-    }
-
-    public void clickLetterE(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('E');
-    }
-
-    public void clickLetterF(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('F');
-    }
-
-    public void clickLetterG(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('G');
-    }
-
-    public void clickLetterH(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('H');
-    }
-
-    public void clickLetterI(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('I');
-    }
-
-    public void clickLetterJ(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('J');
-    }
-
-    public void clickLetterK(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('K');
-    }
-
-    public void clickLetterL(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('L');
-    }
-
-    public void clickLetterM(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('M');
-    }
-
-    public void clickLetterN(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('N');
-    }
-
-    public void clickLetterO(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('O');
-    }
-    public void clickLetterP(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('P');
-    }
-
-    public void clickLetterQ(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('Q');
-    }
-
-    public void clickLetterR(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('R');
-    }
-
-    public void clickLetterS(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('S');
-    }
-
-    public void clickLetterT(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('T');
-    }
-
-    public void clickLetterU(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('U');
-    }
-
-    public void clickLetterV(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('V');
-    }
-
-    public void clickLetterW(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('W');
-    }
-
-    public void clickLetterX(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('X');
-    }
-
-    public void clickLetterY(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('Y');
-    }
-
-    public void clickLetterZ(View v) {
-        setButtonState(v, false);
-        CheckLetterInWord('Z');
+        CheckLetterInWord(letter);
     }
 
     public void PlayGame(GameType gameType) {

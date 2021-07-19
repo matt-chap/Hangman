@@ -54,7 +54,7 @@ public class HangmanPlay extends AppCompatActivity {
             mAdView.setVisibility(View.GONE);
         }
 
-        txtWord = (TextView) findViewById(R.id.text_word);
+        txtWord = findViewById(R.id.text_word);
         PlayGame(GameType.NEW_GAME);
     }
 
@@ -124,7 +124,7 @@ public class HangmanPlay extends AppCompatActivity {
 
                 playAgainTxt.setVisibility(View.VISIBLE);
                 playAgain.setVisibility(View.VISIBLE);
-                playAgain.setText("Play Again?");
+                playAgain.setText(getString(R.string.play_Again));
             }
         } else if (countData.getLoss() != 0) {
             // Can replay lost games so let the user do that
@@ -133,7 +133,7 @@ public class HangmanPlay extends AppCompatActivity {
 
             playAgainTxt.setVisibility(View.VISIBLE);
             playAgain.setVisibility(View.VISIBLE);
-            playAgain.setText("Play Lost Words?");
+            playAgain.setText(getString(R.string.play_Lost_Words));
 
             HangmanWordModel wordData = db.getLostWord();
             currentWord = wordData.getWord();
@@ -177,12 +177,12 @@ public class HangmanPlay extends AppCompatActivity {
 
             txtWord.setText(sb.toString());
         } else {
-            txtWord.setText("You Win");
+            txtWord.setText(getString(R.string.you_Win));
         }
     }
 
     public void SetWordCategory(int categoryInt) {
-        final TextView txtCategory = (TextView) findViewById(R.id.text_category);
+        final TextView txtCategory = findViewById(R.id.text_category);
         Category cat = Category.getCategoryName(categoryInt);
         txtCategory.setText(cat.name());
     }
@@ -308,6 +308,6 @@ public class HangmanPlay extends AppCompatActivity {
     }
 
     private boolean isTestDevice() {
-        return Boolean.valueOf(Settings.System.getString(getContentResolver(), "firebase.test.lab"));
+        return Boolean.parseBoolean(Settings.System.getString(getContentResolver(), "firebase.test.lab"));
     }
 }

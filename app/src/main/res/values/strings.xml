@@ -6,6 +6,7 @@
     <string name="you_Win">You Win</string>
     <string name="play_Lost_Words">Play Lost Words?</string>
     <string name="play_Again">Play Again?</string>
+    <string name="hint">Hint?</string>
 
     <string name="a_Button">A</string>
     <string name="b_Button">B</string>

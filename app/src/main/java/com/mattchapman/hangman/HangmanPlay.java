@@ -64,6 +64,36 @@ public class HangmanPlay extends AppCompatActivity {
         CheckLetterInWord(letter);
     }
 
+    public void clickHint(View v) {
+        hintBuntonEnabled(false);
+
+        Character letter = hintLetter();
+        String dynamicButtonFind = "button" + letter;
+        View buttonView = findViewById(getResources().getIdentifier(dynamicButtonFind, "id", getPackageName()));
+        setButtonState(buttonView, false);
+        CheckLetterInWord(letter);
+    }
+
+    // TODO: May want to randomize the letter picking
+    public Character hintLetter(){
+        String underscoreWord = txtWord.getText().toString();
+        Integer firstUnknownLetter = underscoreWord.indexOf("_");
+        Character letter = currentWord.charAt(firstUnknownLetter);
+        return letter;
+    }
+
+    public void hintBuntonEnabled(Boolean isEnabled){
+        View v = findViewById(R.id.buttonHint);
+        v.setEnabled(isEnabled);
+        int backgroundId = R.drawable.grey_button;
+
+        if (isEnabled){
+            backgroundId = R.drawable.blue_button;
+        }
+
+        ((Button) v).setBackground(ContextCompat.getDrawable(this, backgroundId));
+    }
+
     public void PlayGame(GameType gameType) {
         // Prevent user from going further until we decide what point they are
         CardView card = findViewById(R.id.playAgainView);

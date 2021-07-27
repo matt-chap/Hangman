@@ -11,6 +11,7 @@ import android.util.Log;
 import com.mattchapman.hangman.HangmanContract.*;
 import com.mattchapman.hangman.model.HangmanCountModel;
 import com.mattchapman.hangman.model.HangmanWordModel;
+import com.mattchapman.hangman.model.UserDataModel;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -146,6 +147,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
         super.close();
     }
 
+    //region Word Look Ups
     // This method is used to get a new
     // the word and the corresponding category from the database.
     public HangmanWordModel getUnplayedWord() {
@@ -153,7 +155,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getReadableDatabase();
 
             // To return a random word
-            String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 0 ORDER BY RANDOM() LIMIT 1;";
+            String query = "SELECT * FROM " + HangmanEntry.TABLE_HANGMAN_WORDS + " WHERE Won = 0 ORDER BY RANDOM() LIMIT 1;";
             Cursor cursor = db.rawQuery(query, null);
 
             if (cursor.moveToFirst()) {
@@ -177,7 +179,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getReadableDatabase();
 
             // To return a random word
-            String query = "SELECT * FROM " + HangmanEntry.TABLE_NAME + " WHERE Won = 1 ORDER BY RANDOM() LIMIT 1;";
+            String query = "SELECT * FROM " + HangmanEntry.TABLE_HANGMAN_WORDS + " WHERE Won = 1 ORDER BY RANDOM() LIMIT 1;";
             Cursor cursor = db.rawQuery(query, null);
 
             if (cursor.moveToFirst()) {
@@ -206,7 +208,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
                     "SUM(CASE WHEN Won = 0 THEN 1 ELSE 0 END) as Unplayed," +
                     "SUM(CASE WHEN Won = 1 THEN 1 ELSE 0 END) as Loss," +
                     "SUM(CASE WHEN Won = 2 THEN 1 ELSE 0 END) as Won" +
-                    " FROM " + HangmanEntry.TABLE_NAME + ";";
+                    " FROM " + HangmanEntry.TABLE_HANGMAN_WORDS + ";";
             Cursor cursor = db.rawQuery(query, null);
 
             if (cursor.moveToFirst()) {
@@ -237,7 +239,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             cv.put("Won", 1);
 
             String[] args = new String[]{word};
-            db.update(HangmanEntry.TABLE_NAME, cv, "Word=?", args);
+            db.update(HangmanEntry.TABLE_HANGMAN_WORDS, cv, "Word=?", args);
         } catch (Exception ex){
             // TODO: log this error, IDK why/how google got this error to trigger
         }
@@ -253,9 +255,86 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             cv.put("Won", 2);
 
             String[] args = new String[]{word};
-            db.update(HangmanEntry.TABLE_NAME, cv, "Word=?", args);
+            db.update(HangmanEntry.TABLE_HANGMAN_WORDS, cv, "Word=?", args);
         } catch (Exception ex){
             // TODO: log this error, IDK why/how google got this error to trigger
         }
     }
+    //endregion Word Look Ups
+
+    //region User Data Look Ups
+    public UserDataModel getUserData() {
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            // query help us to return all data
+            // the present in the ALGO_TOPICS table.
+            String query = "SELECT *" +
+                    " FROM " + UserEntry.TABLE_USER_DATA +
+                    " LIMIT 1;";
+            Cursor cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()) {
+                int hintsTaken = cursor.getInt(0);
+                int hintPoints = cursor.getInt(1);
+                int level = cursor.getInt(2);
+                return new UserDataModel(hintsTaken, hintPoints, level);
+            } else {
+                // Todo: log?
+            }
+
+            cursor.close();
+        } catch (Exception ex){
+            return new UserDataModel(0, 0, 0);
+        }
+
+        // TODO: Perhaps need to throw an error
+        return new UserDataModel(0, 0, 0);
+    }
+
+    public void setUserHintTaken(int hintTakenAmount) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try{
+            // query help us to return all data
+            // the present in the ALGO_TOPICS table.
+            ContentValues cv = new ContentValues();
+            cv.put(UserEntry.COLUMN_HINTS_TAKEN, hintTakenAmount);
+
+            db.update(UserEntry.TABLE_USER_DATA, cv, null, null);
+        } catch (Exception ex){
+            // TODO: log this error, IDK why/how google got this error to trigger
+        }
+    }
+
+    public void setUserHintPoints(int hintPointAmount) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try{
+            // query help us to return all data
+            // the present in the ALGO_TOPICS table.
+            ContentValues cv = new ContentValues();
+            cv.put(UserEntry.COLUMN_HINT_POINTS, hintPointAmount);
+
+            db.update(UserEntry.TABLE_USER_DATA, cv, null, null);
+        } catch (Exception ex){
+            // TODO: log this error, IDK why/how google got this error to trigger
+        }
+    }
+
+    public void setUserLevel(int levelAmount) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try{
+            // query help us to return all data
+            // the present in the ALGO_TOPICS table.
+            ContentValues cv = new ContentValues();
+            cv.put(UserEntry.COLUMN_LEVEL, levelAmount);
+
+            db.update(UserEntry.TABLE_USER_DATA, cv, null, null);
+        } catch (Exception ex){
+            // TODO: log this error, IDK why/how google got this error to trigger
+        }
+    }
+    //endregion User Data Look Ups
 }

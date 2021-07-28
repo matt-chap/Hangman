@@ -23,6 +23,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.mattchapman.hangman.model.UserDataModel;
 
 import java.text.NumberFormat;
 
@@ -32,6 +33,7 @@ public class HangmanPlay extends AppCompatActivity {
     String currentWord;
     Integer wrongLetterCount;
     private AdView mAdView;
+    UserDataModel userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +67,18 @@ public class HangmanPlay extends AppCompatActivity {
     }
 
     public void clickHint(View v) {
-        hintBuntonEnabled(false);
+        hintButtonEnabled(false);
+
+        HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
+        if(userData == null){
+            userData = new UserDataModel(0,0,0);
+        }
+        int hintsTaken = userData.getHintsTaken();
+        db.setUserHintTaken(hintsTaken + 1);
+
+        int hintsPoints = userData.getHintsTaken();
+
+        db.setUserHintPoints(hintsPoints - 5);
 
         Character letter = hintLetter();
         String dynamicButtonFind = "button" + letter;
@@ -82,7 +95,7 @@ public class HangmanPlay extends AppCompatActivity {
         return letter;
     }
 
-    public void hintBuntonEnabled(Boolean isEnabled){
+    public void hintButtonEnabled(Boolean isEnabled){
         View v = findViewById(R.id.buttonHint);
         v.setEnabled(isEnabled);
         int backgroundId = R.drawable.grey_button;
@@ -102,6 +115,7 @@ public class HangmanPlay extends AppCompatActivity {
         // Only init the DB helper one time
         HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
         HangmanCountModel countData;
+        userData = db.getUserData();
 
         String gameOverTxt = "";
         if (gameType == GameType.NEW_GAME) {
@@ -111,6 +125,12 @@ public class HangmanPlay extends AppCompatActivity {
             gameOverTxt = "You WON!";
 
             countData = db.getWordCounts();
+            int wonTimes = countData.getWon();
+            if (wonTimes > 0){
+                db.setUserLevel((int)Math.floor(wonTimes / 25));
+            }
+
+            db.setUserHintPoints(userData.getHintPoints() + 1);
         } else if (gameType == GameType.LOST_GAME) {
             db.setWordLoss(currentWord);
             gameOverTxt = "You LOST." + System.getProperty("line.separator");
@@ -118,6 +138,9 @@ public class HangmanPlay extends AppCompatActivity {
             gameOverTxt += currentWord;
 
             countData = db.getWordCounts();
+
+            //TODO: this may be too mean
+            //db.setUserHintPoints(userData.getHintPoints() - 1);
         } else {
             //Should never hit here
             gameOverTxt = "Unknown play type, please close the app and try again.";
@@ -137,6 +160,7 @@ public class HangmanPlay extends AppCompatActivity {
         ResetVars();
         ResetButtonState();
         SetWordStats(countData);
+        SetHintStats();
 
 
         // Display Game Over text or Just start a new game
@@ -190,6 +214,13 @@ public class HangmanPlay extends AppCompatActivity {
         wrongLetterCount = 0;
         ImageView pic = findViewById(R.id.hangmanPic);
         pic.setBackground(ContextCompat.getDrawable(this, R.drawable.svg_hangman0));
+
+        if(userData != null && userData.getHintPoints() >= 5){
+            hintButtonEnabled(true);
+        }
+        else{
+            hintButtonEnabled(false);
+        }
     }
 
     public void SetUnderscores() {
@@ -226,6 +257,14 @@ public class HangmanPlay extends AppCompatActivity {
 
         final TextView txtLossCount = findViewById(R.id.CountLoss);
         txtLossCount.setText(NumberFormat.getIntegerInstance().format(countData.getLoss()));
+    }
+
+    public void SetHintStats() {
+        final TextView txtUnplayedCount = findViewById(R.id.CountHint);
+        txtUnplayedCount.setText(NumberFormat.getIntegerInstance().format(userData.getHintPoints()));
+
+        final TextView txtWonCount = findViewById(R.id.CountLevel);
+        txtWonCount.setText(NumberFormat.getIntegerInstance().format(userData.getLevel()));
     }
 
     public void CheckLetterInWord(Character letter) {

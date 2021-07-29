@@ -77,13 +77,18 @@ public class HangmanPlay extends AppCompatActivity {
         db.setUserHintTaken(hintsTaken + 1);
 
         int hintsPoints = userData.getHintsTaken();
-
-        db.setUserHintPoints(hintsPoints - 5);
+        int totalPoints = hintsPoints - 5;
+        db.setUserHintPoints(totalPoints);
 
         Character letter = hintLetter();
         String dynamicButtonFind = "button" + letter;
+
         View buttonView = findViewById(getResources().getIdentifier(dynamicButtonFind, "id", getPackageName()));
         setButtonState(buttonView, false);
+
+        final TextView txtUnplayedCount = findViewById(R.id.CountHint);
+        txtUnplayedCount.setText(NumberFormat.getIntegerInstance().format(totalPoints));
+
         CheckLetterInWord(letter);
     }
 
@@ -129,8 +134,9 @@ public class HangmanPlay extends AppCompatActivity {
             if (wonTimes > 0){
                 db.setUserLevel((int)Math.floor(wonTimes / 25));
             }
-
-            db.setUserHintPoints(userData.getHintPoints() + 1);
+            int hintPoints = userData.getHintPoints() + 1;
+            db.setUserHintPoints(hintPoints);
+            userData.setHintPoints(hintPoints);
         } else if (gameType == GameType.LOST_GAME) {
             db.setWordLoss(currentWord);
             gameOverTxt = "You LOST." + System.getProperty("line.separator");

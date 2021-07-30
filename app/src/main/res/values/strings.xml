@@ -6,7 +6,7 @@
     <string name="you_Win">You Win</string>
     <string name="play_Lost_Words">Play Lost Words?</string>
     <string name="play_Again">Play Again?</string>
-    <string name="hint">Hint</string>
+    <string name="hint">Hint \n x5</string>
 
     <string name="a_Button">A</string>
     <string name="b_Button">B</string>
@@ -41,4 +41,6 @@
     <string name="hangman_picture_description">Hangman Picture Description</string>
     <string name="play_again">PLAY AGAIN?</string>
     <string name="play_losses">PLAY WORDS LOST</string>
+    <string name="hint_label">Hint</string>
+    <string name="level_label">Level</string>
 </resources>

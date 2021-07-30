@@ -30,67 +30,110 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/LabelUnplayed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="@string/unplayed"
-                android:textColor="#FFFFFF" />
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/adView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/CountUnplayed"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="@string/_0"
-                android:textColor="#FFFFFF" />
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/adView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/LabelUnplayed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unplayed"
+                    android:textColor="#FFFFFF" />
 
-            <TextView
-                android:id="@+id/LabelWon"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/CountUnplayed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/_0"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:text="@string/won"
-                android:textColor="#92FD00" />
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/adView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/LabelWon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/won"
+                    android:textColor="#92FD00" />
 
-            <TextView
-                android:id="@+id/CountWon"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/CountWon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/_0"
+                    android:textColor="#92FD00" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="@string/_0"
-                android:textColor="#92FD00" />
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/adView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/LabelLoss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/loss"
+                    android:textColor="#FF5E5E" />
 
-            <TextView
-                android:id="@+id/LabelLoss"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:text="@string/loss"
-                android:textColor="#FF5E5E" />
+                <TextView
+                    android:id="@+id/CountLoss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/_0"
+                    android:textColor="#FF5E5E" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/CountLoss"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="@string/_0"
-                android:textColor="#FF5E5E" />
-
+        </LinearLayout>
             <TextView
                 android:id="@+id/LabelHint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:text="Hint"
+                android:text="@string/hint_label"
                 android:textColor="#FFFFFF" />
 
             <TextView
@@ -108,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:text="Level"
+                android:text="@string/level_label"
                 android:textColor="#FFFFFF" />
 
             <TextView
@@ -130,10 +173,10 @@
             android:contentDescription="@string/hangman_picture_description"
             app:layout_constraintBottom_toTopOf="@+id/text_category"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintHorizontal_bias="0.50"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias=".20" />
 
         <Button
             android:id="@+id/buttonHint"

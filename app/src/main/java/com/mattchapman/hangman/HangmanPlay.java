@@ -67,27 +67,26 @@ public class HangmanPlay extends AppCompatActivity {
     }
 
     public void clickHint(View v) {
-        hintButtonEnabled(false);
-
         HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);
         if(userData == null){
             userData = new UserDataModel(0,0,0);
         }
-        int hintsTaken = userData.getHintsTaken();
-        db.setUserHintTaken(hintsTaken + 1);
+        int hintsTaken = userData.getHintsTaken() + 1;
+        userData.setHintsTaken(hintsTaken);
+        db.setUserHintTaken(hintsTaken);
 
-        int hintsPoints = userData.getHintsTaken();
-        int totalPoints = hintsPoints - 5;
-        db.setUserHintPoints(totalPoints);
+        int hintsPoints = userData.getHintPoints() - 5;
+        userData.setHintPoints(hintsPoints);
+        db.setUserHintPoints(hintsPoints);
+        hintButtonEnabled(HasEnoughHitPoints());
+        TextView txtUnplayedCount = findViewById(R.id.CountHint);
+        txtUnplayedCount.setText(NumberFormat.getIntegerInstance().format(hintsPoints));
 
         Character letter = hintLetter();
         String dynamicButtonFind = "button" + letter;
 
         View buttonView = findViewById(getResources().getIdentifier(dynamicButtonFind, "id", getPackageName()));
         setButtonState(buttonView, false);
-
-        final TextView txtUnplayedCount = findViewById(R.id.CountHint);
-        txtUnplayedCount.setText(NumberFormat.getIntegerInstance().format(totalPoints));
 
         CheckLetterInWord(letter);
     }
@@ -220,13 +219,11 @@ public class HangmanPlay extends AppCompatActivity {
         wrongLetterCount = 0;
         ImageView pic = findViewById(R.id.hangmanPic);
         pic.setBackground(ContextCompat.getDrawable(this, R.drawable.svg_hangman0));
+        hintButtonEnabled(HasEnoughHitPoints());
+    }
 
-        if(userData != null && userData.getHintPoints() >= 5){
-            hintButtonEnabled(true);
-        }
-        else{
-            hintButtonEnabled(false);
-        }
+    public boolean HasEnoughHitPoints(){
+        return userData != null && userData.getHintPoints() >= 5;
     }
 
     public void SetUnderscores() {

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
     <data>
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
         <variable
             name="handlers"
             type="com.mattchapman.hangman.HangmanPlay" />
@@ -16,32 +15,21 @@
         android:background="#323436"
         tools:context=".HangmanPlay">
 
-
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/adView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
             <LinearLayout
-                android:id="@+id/linearLayout4"
+                android:id="@+id/linearLayout3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -49,6 +37,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
                 <TextView
                     android:id="@+id/LabelUnplayed"
                     android:layout_width="wrap_content"
@@ -66,18 +55,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/_0"
                     android:textColor="#FFFFFF" />
-            </LinearLayout>
 
-
-            <LinearLayout
-                android:id="@+id/linearLayout5"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@id/adView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
                 <TextView
                     android:id="@+id/LabelWon"
                     android:layout_width="wrap_content"
@@ -95,18 +73,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/_0"
                     android:textColor="#92FD00" />
-            </LinearLayout>
 
-
-            <LinearLayout
-                android:id="@+id/linearLayout6"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@id/adView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
                 <TextView
                     android:id="@+id/LabelLoss"
                     android:layout_width="wrap_content"
@@ -126,74 +93,90 @@
                     android:textColor="#FF5E5E" />
             </LinearLayout>
 
-        </LinearLayout>
-            <TextView
-                android:id="@+id/LabelHint"
+            <LinearLayout
+                android:id="@+id/linearLayout7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:text="@string/hint_label"
-                android:textColor="#FFFFFF" />
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/adView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/CountHint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="@string/_0"
-                android:textColor="#FFFFFF" />
+                <TextView
+                    android:id="@+id/LabelHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/hint_label"
+                    android:textColor="#FFFFFF" />
 
-            <TextView
-                android:id="@+id/LabelLevel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:text="@string/level_label"
-                android:textColor="#FFFFFF" />
+                <TextView
+                    android:id="@+id/CountHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/_0"
+                    android:textColor="#FFFFFF" />
 
-            <TextView
-                android:id="@+id/CountLevel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="@string/_0"
-                android:textColor="#FFFFFF" />
+                <TextView
+                    android:id="@+id/LabelLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/level_label"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/CountLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/_0"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
         </LinearLayout>
 
         <ImageView
             android:id="@+id/hangmanPic"
-            android:layout_width="317dp"
-            android:layout_height="217dp"
-            android:layout_marginBottom="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:minWidth="100dp"
+            android:maxWidth="400dp"
+            android:minHeight="100dp"
+            android:maxHeight="400dp"
+            android:scaleType="fitCenter"
+            app:layout_constrainedWidth="true"
+            app:layout_constrainedHeight="true"
             android:background="@drawable/svg_hangman0"
             android:contentDescription="@string/hangman_picture_description"
             app:layout_constraintBottom_toTopOf="@+id/text_category"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/text_category"
             app:layout_constraintHorizontal_bias="0.50"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"/>
 
         <Button
             android:id="@+id/buttonHint"
             style="?android:attr/buttonBarButtonStyle"
-            android:textAllCaps="false"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/blue_button"
             android:onClick="@{(v) -> handlers.clickHint(v)}"
             android:text="@string/hint"
+            android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/text_category"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text_category"
@@ -333,8 +316,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/h_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'H')}"
+                    android:text="@string/h_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -344,8 +327,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/i_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'I')}"
+                    android:text="@string/i_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -355,8 +338,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/j_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'J')}"
+                    android:text="@string/j_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -366,8 +349,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/k_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'K')}"
+                    android:text="@string/k_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -377,8 +360,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/l_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'L')}"
+                    android:text="@string/l_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -388,8 +371,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/m_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'M')}"
+                    android:text="@string/m_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -399,8 +382,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/n_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'N')}"
+                    android:text="@string/n_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -417,8 +400,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/o_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'O')}"
+                    android:text="@string/o_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -428,8 +411,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/p_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'P')}"
+                    android:text="@string/p_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -439,8 +422,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/q_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'Q')}"
+                    android:text="@string/q_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -450,8 +433,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/r_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'R')}"
+                    android:text="@string/r_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -461,8 +444,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/s_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'S')}"
+                    android:text="@string/s_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -472,8 +455,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/t_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'T')}"
+                    android:text="@string/t_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="24sp" />
 
@@ -483,8 +466,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/u_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'U')}"
+                    android:text="@string/u_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -503,8 +486,8 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/v_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'V')}"
+                    android:text="@string/v_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -516,8 +499,8 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/w_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'W')}"
+                    android:text="@string/w_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -529,8 +512,8 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/x_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'X')}"
+                    android:text="@string/x_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -542,8 +525,8 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/y_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'Y')}"
+                    android:text="@string/y_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
 
@@ -553,8 +536,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:text="@string/z_Button"
                     android:onClick="@{(v) -> handlers.clickLetter(v, 'Z')}"
+                    android:text="@string/z_Button"
                     android:textColor="#6ec5f0"
                     android:textSize="20sp" />
             </LinearLayout>

@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.firebase.crashlytics'
 }
 
 // TODO: recheck when it gets added to plugins.gradle.org
@@ -58,15 +59,6 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.2.1')
     // Add the dependency for the Firebase SDK for Google Analytics
     // When using the BoM, don't specify versions in Firebase dependencies
+    implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
-
-
-    // These libraries versions are known to be compatible with each other.
-    // If you encounter a build error "Cannot Access Hide", it means the Firebase libraries'
-    // versions you are using are not compatible.
-    //implementation 'com.firebaseui:firebase-ui-auth:3.3.0'
-    //implementation 'com.google.firebase:firebase-auth:12.0.1'
-    //implementation 'com.google.firebase:firebase-core:12.0.1'
-    //implementation 'com.google.firebase:firebase-functions:12.0.1'
-    //implementation 'com.google.firebase:firebase-messaging:12.0.1'
 }

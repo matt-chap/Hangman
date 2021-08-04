@@ -160,13 +160,11 @@ public class HangmanPlay extends AppCompatActivity {
         TextView playOver = findViewById(R.id.playOver);
         TextView playLossGames = findViewById(R.id.playLossGames);
 
-
         // Reset Game
         ResetVars();
         ResetButtonState();
         SetWordStats(countData);
         SetHintStats();
-
 
         // Display Game Over text or Just start a new game
         if (countData.getUnplayed() != 0) {

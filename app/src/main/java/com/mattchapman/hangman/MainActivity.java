@@ -37,22 +37,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*
-    // Initialize a BillingClient
-    private PurchasesUpdatedListener purchasesUpdatedListener = new PurchasesUpdatedListener() {
-        @Override
-        public void onPurchasesUpdated(BillingResult billingResult, List<Purchase> purchases) {
-            // To be implemented in a later section.
-        }
-    };
-
-
-    private BillingClient billingClient = BillingClient.newBuilder(activity)
-            .setListener(purchasesUpdatedListener)
-            .enablePendingPurchases()
-            .build();
-*/
-
     public void playButtonClick(View view) {
         Intent intent = new Intent(this, HangmanPlay.class);
         startActivity(intent);
@@ -63,5 +47,4 @@ public class MainActivity extends AppCompatActivity {
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }
-
 }

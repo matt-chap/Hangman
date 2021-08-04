@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.353125" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/activity_hangman_play.xml" value="0.33697916666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.32135416666666666" />
       </map>
     </option>
   </component>

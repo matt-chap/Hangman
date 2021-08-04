@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.mattchapman.hangman.HangmanContract.*;
 import com.mattchapman.hangman.model.HangmanCountModel;
 import com.mattchapman.hangman.model.HangmanWordModel;
@@ -82,13 +83,8 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase checkDB = null;
         try {
             String myPath = DB_PATH;
-            checkDB
-                    = SQLiteDatabase
-                    .openDatabase(
-                            myPath, null,
-                            SQLiteDatabase.OPEN_READONLY);
+            checkDB = SQLiteDatabase.openDatabase( myPath, null, SQLiteDatabase.OPEN_READONLY);
         } catch (SQLiteException e) {
-
             // database doesn't exist yet.
             Log.e("message", "" + e);
         }
@@ -114,8 +110,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
         String outFileName = DB_PATH;
 
         // Open the empty db as the output stream
-        OutputStream myOutput
-                = new FileOutputStream(outFileName);
+        OutputStream myOutput = new FileOutputStream(outFileName);
 
         // transfer bytes from the
         // inputfile to the outputfile
@@ -165,8 +160,8 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
 
                 return new HangmanWordModel(word, category, won);
             }
-        } catch (Exception ex){
-            // TODO: Error Controls? Mailto?
+        } catch (Exception ex) {
+            FirebaseCrashlytics.getInstance().log("getUnplayedWord error: " + ex.getMessage());
             return new HangmanWordModel("987-654-321", 0, 0);
         }
 
@@ -189,8 +184,8 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
 
                 return new HangmanWordModel(word, category, won);
             }
-        } catch (Exception ex){
-            // TODO: Error Controls? Mailto?
+        } catch (Exception ex) {
+            FirebaseCrashlytics.getInstance().log("getLostWord error: " + ex.getMessage());
             return new HangmanWordModel("987-654-321", 0, 0);
         }
 
@@ -199,7 +194,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
     }
 
     public HangmanCountModel getWordCounts() {
-        try{
+        try {
             SQLiteDatabase db = this.getReadableDatabase();
 
             // query help us to return all data
@@ -216,23 +211,20 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
                 int loss = cursor.getInt(1);
                 int won = cursor.getInt(2);
                 return new HangmanCountModel(won, loss, unplayed);
-            } else {
-                // Todo: log?
             }
-
             cursor.close();
-        } catch (Exception ex){
+        } catch (Exception ex) {
+            FirebaseCrashlytics.getInstance().log("getWordCounts error: " + ex.getMessage());
             return new HangmanCountModel(0, 0, 0);
         }
 
-        // TODO: Perhaps need to throw an error
         return new HangmanCountModel(0, 0, 0);
     }
 
     public void setWordLoss(String word) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        try{
+        try {
             // query help us to return all data
             // the present in the ALGO_TOPICS table.
             ContentValues cv = new ContentValues();
@@ -240,8 +232,8 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
 
             String[] args = new String[]{word};
             db.update(HangmanEntry.TABLE_HANGMAN_WORDS, cv, "Word=?", args);
-        } catch (Exception ex){
-            // TODO: log this error, IDK why/how google got this error to trigger
+        } catch (Exception ex) {
+            FirebaseCrashlytics.getInstance().log("setWordLoss error word: " + word);
         }
     }
 
@@ -256,15 +248,15 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
 
             String[] args = new String[]{word};
             db.update(HangmanEntry.TABLE_HANGMAN_WORDS, cv, "Word=?", args);
-        } catch (Exception ex){
-            // TODO: log this error, IDK why/how google got this error to trigger
+        } catch (Exception ex) {
+            FirebaseCrashlytics.getInstance().log("setWordWon error word: " + word);
         }
     }
     //endregion Word Look Ups
 
     //region User Data Look Ups
     public UserDataModel getUserData() {
-        try{
+        try {
             SQLiteDatabase db = this.getReadableDatabase();
 
             // query help us to return all data
@@ -279,12 +271,10 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
                 int hintPoints = cursor.getInt(1);
                 int level = cursor.getInt(2);
                 return new UserDataModel(hintsTaken, hintPoints, level);
-            } else {
-                // Todo: log?
             }
-
             cursor.close();
-        } catch (Exception ex){
+        } catch (Exception ex) {
+            FirebaseCrashlytics.getInstance().log("getUserData error: " + ex.getMessage());
             return new UserDataModel(0, 0, 0);
         }
 
@@ -295,45 +285,45 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
     public void setUserHintTaken(int hintTakenAmount) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        try{
+        try {
             // query help us to return all data
             // the present in the ALGO_TOPICS table.
             ContentValues cv = new ContentValues();
             cv.put(UserEntry.COLUMN_HINTS_TAKEN, hintTakenAmount);
 
             db.update(UserEntry.TABLE_USER_DATA, cv, null, null);
-        } catch (Exception ex){
-            // TODO: log this error, IDK why/how google got this error to trigger
+        } catch (Exception ex) {
+            FirebaseCrashlytics.getInstance().log("setUserHintTaken error: " + ex.getMessage());
         }
     }
 
     public void setUserHintPoints(int hintPointAmount) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        try{
+        try {
             // query help us to return all data
             // the present in the ALGO_TOPICS table.
             ContentValues cv = new ContentValues();
             cv.put(UserEntry.COLUMN_HINT_POINTS, hintPointAmount);
 
             db.update(UserEntry.TABLE_USER_DATA, cv, null, null);
-        } catch (Exception ex){
-            // TODO: log this error, IDK why/how google got this error to trigger
+        } catch (Exception ex) {
+            FirebaseCrashlytics.getInstance().log("setUserHintPoints error: " + ex.getMessage());
         }
     }
 
     public void setUserLevel(int levelAmount) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        try{
+        try {
             // query help us to return all data
             // the present in the ALGO_TOPICS table.
             ContentValues cv = new ContentValues();
             cv.put(UserEntry.COLUMN_LEVEL, levelAmount);
 
             db.update(UserEntry.TABLE_USER_DATA, cv, null, null);
-        } catch (Exception ex){
-            // TODO: log this error, IDK why/how google got this error to trigger
+        } catch (Exception ex) {
+            FirebaseCrashlytics.getInstance().log("setUserLevel error: " + ex.getMessage());
         }
     }
     //endregion User Data Look Ups

@@ -12,7 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.Color;
+import android.widget.Toast;
 
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.mattchapman.hangman.databinding.ActivityHangmanPlayBinding;
 import com.mattchapman.hangman.enums.Category;
 import com.mattchapman.hangman.enums.GameType;
@@ -89,6 +91,31 @@ public class HangmanPlay extends AppCompatActivity {
         setButtonState(buttonView, false);
 
         CheckLetterInWord(letter);
+    }
+
+    public void clickReport(View v) {
+        try{
+            throw new Exception("Reported Word: " + currentWord);
+        }catch (Exception ex){
+            FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
+            fbc.setCustomKey("Class.Method", "HangmanPlay.clickReport");
+            fbc.recordException(ex);
+
+            Toast.makeText(getApplicationContext(), "Word reported!", Toast.LENGTH_SHORT).show();
+            reportButtonEnabled(false);
+        }
+    }
+
+    public void reportButtonEnabled(Boolean isEnabled){
+        View v = findViewById(R.id.buttonReportWord);
+        v.setEnabled(isEnabled);
+        int backgroundId = R.drawable.grey_button;
+
+        if (isEnabled){
+            backgroundId = R.drawable.blue_button;
+        }
+
+        ((Button) v).setBackground(ContextCompat.getDrawable(this, backgroundId));
     }
 
     // TODO: May want to randomize the letter picking
@@ -218,6 +245,7 @@ public class HangmanPlay extends AppCompatActivity {
         ImageView pic = findViewById(R.id.hangmanPic);
         pic.setBackground(ContextCompat.getDrawable(this, R.drawable.svg_hangman0));
         hintButtonEnabled(HasEnoughHitPoints());
+        reportButtonEnabled(true);
     }
 
     public boolean HasEnoughHitPoints(){

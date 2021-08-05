@@ -161,11 +161,12 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
                 return new HangmanWordModel(word, category, won);
             }
         } catch (Exception ex) {
-            FirebaseCrashlytics.getInstance().log("getUnplayedWord error: " + ex.getMessage());
+            FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
+            fbc.setCustomKey("Class.Method", "HangmanDBHelper.getUnplayedWord");
+            fbc.recordException(ex);
             return new HangmanWordModel("987-654-321", 0, 0);
         }
 
-        // TODO: Perhaps need to throw error or try again
         return new HangmanWordModel("123-456-789", 0, 0);
     }
 
@@ -185,7 +186,9 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
                 return new HangmanWordModel(word, category, won);
             }
         } catch (Exception ex) {
-            FirebaseCrashlytics.getInstance().log("getLostWord error: " + ex.getMessage());
+            FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
+            fbc.setCustomKey("Class.Method", "HangmanDBHelper.getLostWord");
+            fbc.recordException(ex);
             return new HangmanWordModel("987-654-321", 0, 0);
         }
 
@@ -214,7 +217,9 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             }
             cursor.close();
         } catch (Exception ex) {
-            FirebaseCrashlytics.getInstance().log("getWordCounts error: " + ex.getMessage());
+            FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
+            fbc.setCustomKey("Class.Method", "HangmanDBHelper.getWordCounts");
+            fbc.recordException(ex);
             return new HangmanCountModel(0, 0, 0);
         }
 
@@ -233,7 +238,9 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             String[] args = new String[]{word};
             db.update(HangmanEntry.TABLE_HANGMAN_WORDS, cv, "Word=?", args);
         } catch (Exception ex) {
-            FirebaseCrashlytics.getInstance().log("setWordLoss error word: " + word);
+            FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
+            fbc.setCustomKey("Class.Method", "HangmanDBHelper.setWordLoss");
+            fbc.recordException(ex);
         }
     }
 
@@ -249,7 +256,9 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             String[] args = new String[]{word};
             db.update(HangmanEntry.TABLE_HANGMAN_WORDS, cv, "Word=?", args);
         } catch (Exception ex) {
-            FirebaseCrashlytics.getInstance().log("setWordWon error word: " + word);
+            FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
+            fbc.setCustomKey("Class.Method", "HangmanDBHelper.setWordWon");
+            fbc.recordException(ex);
         }
     }
     //endregion Word Look Ups
@@ -274,11 +283,12 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
             }
             cursor.close();
         } catch (Exception ex) {
-            FirebaseCrashlytics.getInstance().log("getUserData error: " + ex.getMessage());
+            FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
+            fbc.setCustomKey("Class.Method", "HangmanDBHelper.getUserData");
+            fbc.recordException(ex);
             return new UserDataModel(0, 0, 0);
         }
 
-        // TODO: Perhaps need to throw an error
         return new UserDataModel(0, 0, 0);
     }
 
@@ -293,7 +303,9 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
 
             db.update(UserEntry.TABLE_USER_DATA, cv, null, null);
         } catch (Exception ex) {
-            FirebaseCrashlytics.getInstance().log("setUserHintTaken error: " + ex.getMessage());
+            FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
+            fbc.setCustomKey("Class.Method", "HangmanDBHelper.setUserHintTaken");
+            fbc.recordException(ex);
         }
     }
 
@@ -308,7 +320,9 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
 
             db.update(UserEntry.TABLE_USER_DATA, cv, null, null);
         } catch (Exception ex) {
-            FirebaseCrashlytics.getInstance().log("setUserHintPoints error: " + ex.getMessage());
+            FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
+            fbc.setCustomKey("Class.Method", "HangmanDBHelper.setUserHintPoints");
+            fbc.recordException(ex);
         }
     }
 
@@ -323,7 +337,9 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
 
             db.update(UserEntry.TABLE_USER_DATA, cv, null, null);
         } catch (Exception ex) {
-            FirebaseCrashlytics.getInstance().log("setUserLevel error: " + ex.getMessage());
+            FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
+            fbc.setCustomKey("Class.Method", "HangmanDBHelper.setUserLevel");
+            fbc.recordException(ex);
         }
     }
     //endregion User Data Look Ups

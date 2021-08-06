@@ -1,7 +1,7 @@
 package com.mattchapman.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
@@ -112,7 +112,7 @@ public class HangmanPlay extends AppCompatActivity {
         int backgroundId = R.drawable.grey_button;
 
         if (isEnabled){
-            backgroundId = R.drawable.blue_button;
+            backgroundId = R.drawable.red_button;
         }
 
         ((Button) v).setBackground(ContextCompat.getDrawable(this, backgroundId));
@@ -140,7 +140,7 @@ public class HangmanPlay extends AppCompatActivity {
 
     public void PlayGame(GameType gameType) {
         // Prevent user from going further until we decide what point they are
-        CardView card = findViewById(R.id.playAgainView);
+        ConstraintLayout card = findViewById(R.id.playAgainView);
         card.setVisibility(View.VISIBLE);
 
         // Only init the DB helper one time
@@ -236,7 +236,7 @@ public class HangmanPlay extends AppCompatActivity {
 
     public void PlayAgainClick(View view) {
         // Data should already be loaded so all that has to happen is the screen will disappear
-        CardView card = findViewById(R.id.playAgainView);
+        ConstraintLayout card = findViewById(R.id.playAgainView);
         card.setVisibility(View.GONE);
     }
 

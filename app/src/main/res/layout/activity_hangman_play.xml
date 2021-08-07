@@ -559,7 +559,7 @@
             android:id="@+id/playAgainView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
+            android:visibility="vi"
             android:background="#DF000000"
             android:layout_gravity="center"
             android:gravity="center"
@@ -580,10 +580,11 @@
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                app:layout_constraintBottom_toTopOf="@+id/playLossGames"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias=".5"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/playLossGames"
+                app:layout_constraintVertical_bias=".3"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed" />
 
@@ -654,10 +655,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/playAgainText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintVertical_chainStyle="packed" />
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -33,6 +33,7 @@ import java.text.NumberFormat;
 public class HangmanPlay extends AppCompatActivity {
     TextView txtWord;
     String currentWord;
+    String reportedWord = "";
     Integer wrongLetterCount;
     private AdView mAdView;
     UserDataModel userData;
@@ -118,7 +119,6 @@ public class HangmanPlay extends AppCompatActivity {
         ((Button) v).setBackground(ContextCompat.getDrawable(this, backgroundId));
     }
 
-    // TODO: May want to randomize the letter picking
     public Character hintLetter(){
         String underscoreWord = txtWord.getText().toString();
         Integer firstUnknownLetter = underscoreWord.indexOf("_");
@@ -142,6 +142,9 @@ public class HangmanPlay extends AppCompatActivity {
         // Prevent user from going further until we decide what point they are
         ConstraintLayout card = findViewById(R.id.playAgainView);
         card.setVisibility(View.VISIBLE);
+
+        // ensure the word reported is the word that was played
+        reportedWord = currentWord;
 
         // Only init the DB helper one time
         HangmanDBHelper db = new HangmanDBHelper(HangmanPlay.this);

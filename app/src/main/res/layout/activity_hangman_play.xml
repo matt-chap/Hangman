@@ -559,7 +559,7 @@
             android:id="@+id/playAgainView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="vi"
+            android:visibility="gone"
             android:background="#DF000000"
             android:layout_gravity="center"
             android:gravity="center"

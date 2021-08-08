@@ -96,7 +96,7 @@ public class HangmanPlay extends AppCompatActivity {
 
     public void clickReport(View v) {
         try{
-            throw new Exception("Reported Word: " + currentWord);
+            throw new Exception("Reported Word: " + reportedWord);
         }catch (Exception ex){
             FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
             fbc.setCustomKey("Class.Method", "HangmanPlay.clickReport");
@@ -232,6 +232,7 @@ public class HangmanPlay extends AppCompatActivity {
 
             playAgainTxt.setVisibility(View.GONE);
             playAgain.setVisibility(View.GONE);
+            reportButtonEnabled(false);
         }
 
         SetUnderscores();

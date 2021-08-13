@@ -43,4 +43,5 @@
     <string name="play_losses">PLAY WORDS LOST</string>
     <string name="hint_label">Hint</string>
     <string name="level_label">Level</string>
+    <string name="versionV">v%1$d</string>
 </resources>

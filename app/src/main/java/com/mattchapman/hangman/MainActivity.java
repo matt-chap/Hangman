@@ -2,31 +2,22 @@ package com.mattchapman.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.net.Uri;
 import android.widget.TextView;
 
-import com.android.billingclient.api.BillingClient;
-import com.android.billingclient.api.BillingResult;
-import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.PurchasesUpdatedListener;
-
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
     HangmanDBHelper db;
     int versionCode = BuildConfig.VERSION_CODE;
-    Context activity; //TODO: gotta do something with that
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView versionTxt = findViewById(R.id.version);
-        versionTxt.setText("v"+versionCode);
+        versionTxt.setText(getString(R.string.versionV, versionCode));
 
         db = new HangmanDBHelper(this);
         try {

@@ -121,9 +121,8 @@ public class HangmanPlay extends AppCompatActivity {
 
     public Character hintLetter(){
         String underscoreWord = txtWord.getText().toString();
-        Integer firstUnknownLetter = underscoreWord.indexOf("_");
-        Character letter = currentWord.charAt(firstUnknownLetter);
-        return letter;
+        int firstUnknownLetter = underscoreWord.indexOf("_");
+        return currentWord.charAt(firstUnknownLetter);
     }
 
     public void hintButtonEnabled(Boolean isEnabled){
@@ -161,7 +160,7 @@ public class HangmanPlay extends AppCompatActivity {
             countData = db.getWordCounts();
             int wonTimes = countData.getWon();
             if (wonTimes > 0){
-                db.setUserLevel((int)Math.floor(wonTimes / 25));
+                db.setUserLevel((int)Math.floor(wonTimes / 25f));
             }
             int hintPoints = userData.getHintPoints() + 1;
             db.setUserHintPoints(hintPoints);

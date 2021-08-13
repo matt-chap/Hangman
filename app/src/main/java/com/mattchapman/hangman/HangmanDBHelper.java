@@ -18,7 +18,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.SQLException;
 
 public class HangmanDBHelper extends SQLiteOpenHelper {
     // The Android's default system path
@@ -28,7 +27,6 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     private final Context myContext;
     private SQLiteDatabase myDataBase;
-    private SQLiteOpenHelper sqLiteOpenHelper;
 
     public HangmanDBHelper(Context myContext) {
         super(myContext, DATABASE_NAME, null, DATABASE_VERSION);
@@ -52,12 +50,10 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
     // Creates an empty database
     // on the system and rewrites it
     // with your own database.
-    public void createDataBase() throws IOException {
+    public void createDataBase() {
         boolean dbExist = checkDataBase();
 
-        if (dbExist) {
-            // do nothing - database already exist
-        } else {
+        if (!dbExist) {
             // By calling this method and
             // the empty database will be
             // created into the default system
@@ -100,7 +96,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
      * created empty database in the
      * system folder, from where it
      * can be accessed and handled.
-     * This is done by transferring bytestream.
+     * This is done by transferring byte stream.
      */
     private void copyDataBase() throws IOException {
         // Open your local db as the input stream
@@ -113,7 +109,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
         OutputStream myOutput = new FileOutputStream(outFileName);
 
         // transfer bytes from the
-        // inputfile to the outputfile
+        // input file to the output file
         byte[] buffer = new byte[1024];
         int length;
         while ((length = myInput.read(buffer)) > 0) {
@@ -126,7 +122,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
         myInput.close();
     }
 
-    public void openDataBase() throws SQLException {
+    public void openDataBase() {
         // Open the database
         String myPath = DB_PATH;
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
@@ -157,7 +153,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
                 int category = cursor.getInt(0);
                 String word = cursor.getString(1);
                 int won = cursor.getInt(2);
-
+                cursor.close();
                 return new HangmanWordModel(word, category, won);
             }
         } catch (Exception ex) {
@@ -182,7 +178,7 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
                 int category = cursor.getInt(0);
                 String word = cursor.getString(1);
                 int won = cursor.getInt(2);
-
+                cursor.close();
                 return new HangmanWordModel(word, category, won);
             }
         } catch (Exception ex) {
@@ -213,9 +209,10 @@ public class HangmanDBHelper extends SQLiteOpenHelper {
                 int unplayed = cursor.getInt(0);
                 int loss = cursor.getInt(1);
                 int won = cursor.getInt(2);
+                cursor.close();
                 return new HangmanCountModel(won, loss, unplayed);
             }
-            cursor.close();
+
         } catch (Exception ex) {
             FirebaseCrashlytics fbc = FirebaseCrashlytics.getInstance();
             fbc.setCustomKey("Class.Method", "HangmanDBHelper.getWordCounts");

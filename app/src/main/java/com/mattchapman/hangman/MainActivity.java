@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void aboutMeButtonClick(View view) {
-        Uri uriUrl = Uri.parse("https://matt-chap.com/");
+        Uri uriUrl = Uri.parse("https://matt-chap.github.io/about.html");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }
